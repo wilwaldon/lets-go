@@ -1,0 +1,58 @@
+{
+  "business": {
+    "name": "Business Name",
+    "tagline": "Your tagline here",
+    "description": "A brief description of your business and what you do.",
+    "phone": "(555) 123-4567",
+    "phoneLink": "tel:+15551234567",
+    "email": "hello@example.com",
+    "address": {
+      "street": "123 Main Street",
+      "city": "Savannah",
+      "state": "GA",
+      "zip": "31401"
+    },
+    "coordinates": {
+      "lat": 32.0809,
+      "lng": -81.0912
+    }
+  },
+  "hours": {
+    "monday": { "open": "9:00 AM", "close": "5:00 PM" },
+    "tuesday": { "open": "9:00 AM", "close": "5:00 PM" },
+    "wednesday": { "open": "9:00 AM", "close": "5:00 PM" },
+    "thursday": { "open": "9:00 AM", "close": "5:00 PM" },
+    "friday": { "open": "9:00 AM", "close": "5:00 PM" },
+    "saturday": { "open": "10:00 AM", "close": "3:00 PM" },
+    "sunday": "closed"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "twitter": "",
+    "linkedin": "",
+    "yelp": ""
+  },
+  "theme": {
+    "primaryColor": "#2563EB",
+    "secondaryColor": "#1e293b"
+  },
+  "navigation": [
+    { "label": "Home", "href": "index.html" },
+    { "label": "Page 2", "href": "page-2.html" },
+    { "label": "Page 3", "href": "page-3.html" },
+    { "label": "Page 4", "href": "page-4.html" },
+    { "label": "Contact", "href": "contact.html" }
+  ],
+  "hero": {
+    "tagline": "Welcome",
+    "headline": "Your Business Headline",
+    "subheadline": "A supporting description that tells visitors what you do and why they should care.",
+    "ctaText": "Get Started",
+    "ctaLink": "contact.html",
+    "ctaSecondary": "View Services"
+  },
+  "featured": [],
+  "testimonials": [],
+  "team": []
+}

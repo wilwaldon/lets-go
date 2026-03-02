@@ -1,0 +1,13 @@
+# Development files
+*.log
+.DS_Store
+.env
+.env.local
+
+# Test files
+test/
+*.test.js
+
+# Editor files
+.vscode/
+.idea/

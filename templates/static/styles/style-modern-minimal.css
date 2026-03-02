@@ -1,0 +1,282 @@
+/* style-editorial.css — Editorial */
+/* Append ENTIRE file to project's css/styles.css */
+/* Copy :root block into variables.css */
+
+:root {
+  --color-primary: #1a1a1a;
+  --color-primary-hover: #000000;
+  --color-primary-light: #f5f5f5;
+  --color-secondary: #1a1a1a;
+  --color-text: #111111;
+  --color-text-light: #555555;
+  --color-bg: #ffffff;
+  --color-bg-alt: #ffffff;
+  --color-bg-dark: #111111;
+  --color-border: #e0e0e0;
+  --color-border-light: #eeeeee;
+  --font-size-4xl: 3.25rem;
+  --font-size-5xl: 4rem;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.05;
+  --line-height-normal: 1.85;
+  --border-radius-sm: 0;
+  --border-radius: 0.25rem;
+  --border-radius-lg: 0.25rem;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+}
+
+/* Typography — Serif headings, generous body */
+h1,
+h2,
+h3 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+}
+
+/* Hero — Dramatic, Spacious */
+.hero {
+  min-height: 70vh;
+  padding-top: 7rem;
+  padding-bottom: 6rem;
+}
+
+.hero__tagline {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+.hero__title {
+  line-height: 1.05;
+}
+
+.hero__description {
+  font-size: var(--font-size-lg);
+  line-height: 1.9;
+  max-width: 34rem;
+}
+
+/* Buttons — Border only, no fill */
+.btn--primary {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-text);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-text);
+  color: #ffffff;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn--secondary {
+  border: 1px solid var(--color-border);
+}
+
+.btn--secondary:hover {
+  border-color: var(--color-text);
+  transform: none;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+/* Cards — No borders, no shadows, just space */
+.card {
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: none;
+}
+
+.card:hover {
+  transform: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.card__body {
+  padding: var(--spacing-lg) 0;
+}
+
+.card__image {
+  border-radius: 0.25rem;
+}
+
+/* Sections — Thin rules, no background changes */
+.section {
+  padding: 5rem 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 7rem 0;
+  }
+}
+
+.section--alt {
+  background-color: #ffffff;
+}
+
+.section+.section {
+  border-top: 1px solid var(--color-border);
+}
+
+.section-header__label {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  color: var(--color-text-light);
+}
+
+/* Navigation — Simple, serif logo */
+.header {
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: none;
+  background-color: #ffffff;
+}
+
+.header.is-scrolled {
+  box-shadow: none;
+  border-bottom-color: var(--color-border);
+}
+
+.header__logo {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.header__nav a::after {
+  display: none;
+}
+
+.header__nav a:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Testimonials — Large italic, no decoration */
+.testimonial {
+  border: none;
+  border-left: none;
+  padding: var(--spacing-xl) 0;
+}
+
+.testimonial:hover {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.testimonial__text {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-size: 1.375rem;
+  line-height: 1.7;
+}
+
+.testimonial__author {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--font-size-xs);
+}
+
+/* Team — Editorial portrait style */
+.team-card__photo {
+  aspect-ratio: 3 / 4;
+  border-radius: 0.25rem;
+}
+
+.team-card__name {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* CTA Banner */
+.cta-banner {
+  background-color: var(--color-text);
+}
+
+.cta-banner h2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.cta-banner .btn {
+  border-color: #ffffff;
+  color: #ffffff;
+  background: transparent;
+}
+
+.cta-banner .btn:hover {
+  background-color: #ffffff;
+  color: var(--color-text);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-text);
+}
+
+/* Forms */
+.form-group input,
+.form-group textarea {
+  border-radius: 0.25rem;
+  border-width: 1px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-text);
+  box-shadow: none;
+}
+
+/* Dividers — thin */
+.divider {
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+/* 404 */
+.error-page__code {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: var(--color-border);
+}

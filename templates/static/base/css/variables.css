@@ -1,0 +1,76 @@
+/* variables.css — Design tokens as CSS custom properties */
+/* These defaults are overridden at runtime by data.js from site-data.json */
+
+:root {
+  /* Colors */
+  --color-primary: #2563EB;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-light: #eff6ff;
+  --color-secondary: #1e293b;
+  --color-text: #1e293b;
+  --color-text-light: #64748b;
+  --color-text-inverse: #ffffff;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8fafc;
+  --color-bg-dark: #0f172a;
+  --color-border: #e2e8f0;
+  --color-border-light: #f1f5f9;
+  --color-success: #16a34a;
+  --color-error: #dc2626;
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.75rem;
+  --font-size-5xl: 3.5rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.7;
+  --line-height-relaxed: 1.8;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+
+  /* Layout */
+  --max-width: 72rem;
+  --max-width-narrow: 48rem;
+  --container-padding: 1.5rem;
+
+  /* Borders */
+  --border-radius-sm: 0.25rem;
+  --border-radius: 0.5rem;
+  --border-radius-lg: 0.75rem;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Breakpoints (for reference — use in @media queries)
+   sm: 640px
+   md: 768px
+   lg: 1024px
+   xl: 1280px
+*/

@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xcopy:*)",
+      "Bash(robocopy:*)",
+      "Bash(powershell:*)",
+      "Bash(dir:*)",
+      "Bash(ren:*)",
+      "Bash(ls:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(test:*)",
+      "Bash(claude-code:*)",
+      "Bash(wc:*)",
+      "Bash(done)",
+      "Bash(for file in templates/static/configs/{restaurant,salon,fitness,professional}.json)",
+      "Bash(node -e:*)",
+      "Bash(grep:*)",
+      "Bash(tree:*)",
+      "Bash(node scripts/extract-css-root.js:*)",
+      "Bash(node scripts/validate-configs.js:*)",
+      "Bash(node scripts/validate-styles.js:*)",
+      "Bash(node scripts/validate-template.js:*)",
+      "Bash(node scripts/validate-all.js:*)",
+      "WebSearch"
+    ]
+  }
+}

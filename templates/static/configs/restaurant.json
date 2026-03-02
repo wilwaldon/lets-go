@@ -1,0 +1,62 @@
+{
+  "pages": {
+    "page-2": { "filename": "menu.html", "label": "Menu", "title": "Our Menu" },
+    "page-3": { "filename": "order.html", "label": "Order", "title": "Order & Reservations" },
+    "page-4": { "filename": "about.html", "label": "About", "title": "Our Story" }
+  },
+  "hero": {
+    "tagline": "Neighborhood Dining",
+    "headline": "Honest food, made from scratch",
+    "subheadline": "Seasonal ingredients, simple preparations, and a menu that changes with what's fresh. Join us for dinner or take it to go.",
+    "ctaText": "View Menu",
+    "ctaLink": "menu.html",
+    "ctaSecondary": "Make a Reservation"
+  },
+  "ctaText": "View Menu",
+  "additionalData": {
+    "featured": [
+      { "name": "Handmade Pasta", "description": "Fresh pasta made daily — pappardelle, rigatoni, and seasonal shapes tossed with simple, well-sourced ingredients." },
+      { "name": "Wood-Fired Dishes", "description": "Our wood-burning oven brings out deep flavor in everything from roasted vegetables to whole fish." },
+      { "name": "Natural Wines", "description": "A curated list of small-production wines from winemakers who farm responsibly." }
+    ],
+    "menu": {
+      "categories": [
+        {
+          "name": "Starters",
+          "items": [
+            { "name": "Burrata & Stone Fruit", "description": "Creamy burrata, seasonal stone fruit, basil, olive oil, grilled bread.", "price": 16, "dietary": ["vegetarian", "gluten-free option"] },
+            { "name": "Charred Octopus", "description": "Tender octopus, crispy potatoes, smoked paprika aioli, lemon.", "price": 18, "dietary": ["gluten-free"] },
+            { "name": "Roasted Beet Salad", "description": "Mixed beets, arugula, goat cheese, candied walnuts, sherry vinaigrette.", "price": 14, "dietary": ["vegetarian", "gluten-free"] },
+            { "name": "Soup of the Day", "description": "Made fresh daily. Ask your server for today's selection.", "price": 10, "dietary": [] }
+          ]
+        },
+        {
+          "name": "Mains",
+          "items": [
+            { "name": "Pappardelle Bolognese", "description": "Slow-cooked beef and pork ragu, fresh pappardelle, parmigiano.", "price": 24, "dietary": [] },
+            { "name": "Pan-Roasted Salmon", "description": "Wild salmon, farro risotto, roasted fennel, salsa verde.", "price": 28, "dietary": ["gluten-free"] },
+            { "name": "Grilled Ribeye", "description": "12oz grass-fed ribeye, roasted bone marrow butter, seasonal greens.", "price": 38, "dietary": ["gluten-free"] },
+            { "name": "Mushroom Risotto", "description": "Arborio rice, mixed wild mushrooms, truffle oil, aged parmesan.", "price": 22, "dietary": ["vegetarian", "gluten-free"] }
+          ]
+        },
+        {
+          "name": "Desserts",
+          "items": [
+            { "name": "Olive Oil Cake", "description": "Citrus glaze, whipped mascarpone, seasonal compote.", "price": 12, "dietary": ["vegetarian"] },
+            { "name": "Affogato", "description": "Vanilla gelato, hot espresso, amaretti cookie.", "price": 10, "dietary": ["vegetarian"] },
+            { "name": "Dark Chocolate Torte", "description": "Flourless chocolate torte, sea salt, crème fraîche.", "price": 13, "dietary": ["vegetarian", "gluten-free"] }
+          ]
+        }
+      ]
+    },
+    "testimonials": [
+      { "name": "Sarah M.", "text": "The pasta here is the best I've had outside of Italy. The space is warm and unpretentious. We come back every week." },
+      { "name": "James R.", "text": "Finally a restaurant that lets the ingredients speak for themselves. The seasonal menu keeps things exciting." },
+      { "name": "Linda K.", "text": "Perfect for date night or a casual dinner with friends. The wine list is thoughtful and reasonably priced." }
+    ],
+    "team": [
+      { "name": "Marco Alessi", "title": "Head Chef", "bio": "Trained in Bologna, Marco brings fifteen years of kitchen experience and a commitment to seasonal, ingredient-driven cooking.", "photo": "" },
+      { "name": "Elena Torres", "title": "Pastry Chef", "bio": "Elena's desserts balance sweetness with restraint. Her olive oil cake has been on the menu since day one — nobody will let her take it off.", "photo": "" }
+    ]
+  }
+}

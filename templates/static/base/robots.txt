@@ -1,0 +1,8 @@
+# robots.txt for LaunchKit site
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Sitemap location (update with your actual domain during deployment)
+Sitemap: https://example.com/sitemap.xml

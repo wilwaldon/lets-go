@@ -1,0 +1,357 @@
+/* style-material.css — Material */
+/* Append ENTIRE file to project's css/styles.css */
+/* Copy :root block into variables.css */
+
+:root {
+  --color-primary: #1a73e8;
+  --color-primary-hover: #1565c0;
+  --color-primary-light: #e8f0fe;
+  --color-secondary: #1f1f1f;
+  --color-text: #1f1f1f;
+  --color-text-light: #5f6368;
+  --color-text-inverse: #ffffff;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8f9fa;
+  --color-bg-dark: #1f1f1f;
+  --color-border: #e8eaed;
+  --color-border-light: #f1f3f4;
+  --color-error: #d93025;
+  --color-success: #1e8e3e;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3.5rem;
+  --font-weight-bold: 400;
+  --font-weight-semibold: 500;
+  --line-height-tight: 1.15;
+  --line-height-normal: 1.75;
+  --border-radius-sm: 0.5rem;
+  --border-radius: 0.75rem;
+  --border-radius-lg: 0.75rem;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --transition-fast: 200ms cubic-bezier(0.2, 0, 0, 1);
+  --transition-base: 300ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Typography — Light headings, systematic */
+h1 {
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 1.15;
+}
+
+h2 {
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 1.2;
+}
+
+h3 {
+  font-weight: 500;
+}
+
+h4 {
+  font-weight: 500;
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+/* Hero — Clean, airy */
+.hero {
+  min-height: 60vh;
+}
+
+.hero__tagline {
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.hero__title {
+  font-weight: 400;
+  letter-spacing: 0em;
+}
+
+.hero__title::after {
+  display: none;
+}
+
+/* Buttons — Material filled + tonal */
+.btn {
+  border-radius: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+}
+
+.btn--primary:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+.btn--secondary {
+  background-color: rgba(26, 115, 232, 0.08);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.btn--secondary:hover {
+  background-color: rgba(26, 115, 232, 0.12);
+  transform: none;
+  border-color: var(--color-primary);
+}
+
+/* Cards — Filled surface, elevation, no border */
+.card {
+  border: none;
+  border-radius: 0.75rem;
+  background-color: var(--color-bg-alt);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: transparent;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+}
+
+.card__image {
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.card__body {
+  padding: var(--spacing-lg);
+}
+
+/* Sections */
+.section {
+  padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 5rem 0;
+  }
+}
+
+.section--alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section-header__label {
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+}
+
+/* Navigation — Active bar indicator */
+.header {
+  border-bottom: none;
+  box-shadow: none;
+  background-color: #ffffff;
+  backdrop-filter: none;
+}
+
+.header.is-scrolled {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  border-bottom: none;
+}
+
+.header__nav a {
+  font-weight: 500;
+  position: relative;
+}
+
+.header__nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 3px 3px 0 0;
+  transition: width var(--transition-base);
+}
+
+.header__nav a.active::after {
+  width: 100%;
+}
+
+.header__nav a:hover::after {
+  width: 100%;
+}
+
+/* Testimonials — Filled card, elevation */
+.testimonial {
+  border: none;
+  border-left: none;
+  border-radius: 0.75rem;
+  background-color: var(--color-bg-alt);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  padding: var(--spacing-xl);
+}
+
+.testimonial:hover {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial__text {
+  font-style: normal;
+}
+
+.testimonial__author {
+  font-weight: 500;
+}
+
+/* Team — Square, Material radius */
+.team-card__photo {
+  aspect-ratio: 1 / 1;
+  border-radius: 0.75rem;
+}
+
+.team-card__name {
+  font-weight: 500;
+}
+
+.team-card__title {
+  color: var(--color-primary);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* CTA Banner — Material surface */
+.cta-banner {
+  background-color: var(--color-primary);
+}
+
+.cta-banner::before {
+  display: none;
+}
+
+.cta-banner h2 {
+  font-weight: 400;
+}
+
+.cta-banner p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cta-banner .btn {
+  background-color: #ffffff;
+  color: var(--color-primary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+.cta-banner .btn:hover {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-bg-dark);
+}
+
+/* Forms — Outlined fields, Material focus */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border-radius: 0.5rem;
+  border: 1px solid #9aa0a6;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-width: 2px;
+  border-color: var(--color-primary);
+  box-shadow: none;
+  background-color: rgba(26, 115, 232, 0.04);
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}
+
+/* Map — Material radius */
+.map-embed {
+  border-radius: 0.75rem;
+}
+
+/* Badges — Material chips (full round) */
+.badge {
+  border-radius: 9999px;
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  font-weight: 500;
+}
+
+/* Pricing cards — Material elevation */
+.pricing-card {
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-card--featured {
+  border: none;
+  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.pricing-card--featured::before {
+  border-radius: 9999px;
+}
+
+/* Dividers — Material */
+.divider {
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+/* List items */
+.list-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Hours table */
+.hours-table tr.is-today {
+  background-color: var(--color-primary-light);
+}
+
+.hours-table tr.is-today td {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+::selection {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* Mobile menu */
+.mobile-menu {
+  border-radius: 0;
+  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
+}

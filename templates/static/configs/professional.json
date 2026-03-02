@@ -1,0 +1,46 @@
+{
+  "pages": {
+    "page-2": { "filename": "services.html", "label": "Services", "title": "Our Services" },
+    "page-3": { "filename": "team.html", "label": "Team", "title": "Our Team" },
+    "page-4": { "filename": "portal.html", "label": "Client Portal", "title": "Client Portal" }
+  },
+  "hero": {
+    "tagline": "Professional Services",
+    "headline": "Counsel you can count on",
+    "subheadline": "Practical legal guidance for businesses and individuals. Clear communication, fair billing, and results that hold up.",
+    "ctaText": "Schedule a Consultation",
+    "ctaLink": "contact.html",
+    "ctaSecondary": "View Services"
+  },
+  "ctaText": "Schedule a Consultation",
+  "additionalData": {
+    "featured": [
+      { "name": "Business Formation", "description": "LLC setup, partnership agreements, operating agreements, and corporate governance. Get the foundation right." },
+      { "name": "Contract Review", "description": "We review, draft, and negotiate contracts so you understand exactly what you're signing." },
+      { "name": "Dispute Resolution", "description": "When things go sideways, we work toward resolution — through negotiation first, litigation when necessary." }
+    ],
+    "services": [
+      { "name": "Business Formation & Governance", "description": "Entity selection, formation documents, operating agreements, bylaws, and ongoing corporate compliance. We help you structure your business to protect personal assets and set up clean governance from the start.", "icon": "briefcase" },
+      { "name": "Contract Drafting & Review", "description": "Commercial leases, vendor agreements, employment contracts, NDAs, and partnership agreements. Every contract reviewed with an eye for risk and plain-language clarity.", "icon": "file-text" },
+      { "name": "Commercial Litigation", "description": "Breach of contract, business torts, partnership disputes, and collections. We pursue resolution efficiently — most cases settle before trial.", "icon": "scale" },
+      { "name": "Real Estate Transactions", "description": "Purchase agreements, title review, closing coordination, and lease negotiations for commercial and residential properties.", "icon": "home" }
+    ],
+    "credentials": [
+      "Georgia State Bar — Active Member",
+      "Admitted to U.S. District Court, Southern District of Georgia",
+      "Martindale-Hubbell AV Rated",
+      "Savannah Bar Association — Board Member",
+      "Super Lawyers Rising Star — 2022, 2023"
+    ],
+    "testimonials": [
+      { "name": "Robert K., Business Owner", "text": "They handled our LLC formation and commercial lease. Everything was explained clearly, no surprises on the bill. We've referred three other businesses." },
+      { "name": "Patricia S., Real Estate Developer", "text": "Sharp, responsive, and practical. They don't over-lawyer things — they find solutions and move the deal forward." },
+      { "name": "Daniel M., Startup Founder", "text": "Helped us navigate a complicated partnership dispute. Professional throughout, and the outcome was better than we expected." }
+    ],
+    "team": [
+      { "name": "Catherine Harlow", "title": "Managing Partner", "bio": "20 years of business law experience. Catherine advises closely-held businesses on formation, governance, and growth. Known for direct communication and practical counsel.", "photo": "" },
+      { "name": "David Park", "title": "Senior Associate", "bio": "Focuses on commercial litigation and contract disputes. David clerked for the Southern District of Georgia before joining the firm. Thorough researcher, effective negotiator.", "photo": "" },
+      { "name": "Maria Santos", "title": "Associate", "bio": "Handles real estate transactions and business formation. Maria's background in commercial banking gives her a practical edge in deal work.", "photo": "" }
+    ]
+  }
+}

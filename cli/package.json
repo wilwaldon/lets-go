@@ -1,0 +1,36 @@
+{
+  "name": "create-lets-go-app",
+  "version": "1.0.0",
+  "description": "Generate production-ready local business websites with Claude Code",
+  "type": "module",
+  "bin": {
+    "create-lets-go-app": "./index.js"
+  },
+  "keywords": [
+    "static-site",
+    "website-builder",
+    "local-business",
+    "restaurant",
+    "salon",
+    "fitness",
+    "professional-services"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/lets-go.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/lets-go/issues"
+  },
+  "homepage": "https://github.com/your-username/lets-go#readme"
+}

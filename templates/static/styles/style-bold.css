@@ -1,0 +1,882 @@
+/* style-bold.css — Bold & Confident */
+/* Inspired by: Optimised Lean, Buildora, Ghost, Gentleman's Club */
+/* Dark backgrounds, massive type, mixed font treatments, high impact */
+/* Append ENTIRE file to project's css/styles.css */
+/* Copy :root block into variables.css */
+
+/* ============================
+   Token Overrides
+   ============================ */
+
+:root {
+  --color-primary: #f97316;
+  --color-primary-hover: #ea580c;
+  --color-primary-light: #fff7ed;
+  --color-secondary: #0a0a0a;
+  --color-text: #ffffff;
+  --color-text-light: rgba(255, 255, 255, 0.6);
+  --color-text-inverse: #0a0a0a;
+  --color-bg: #0a0a0a;
+  --color-bg-alt: #141414;
+  --color-bg-dark: #000000;
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-light: rgba(255, 255, 255, 0.06);
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: 3.5rem;
+  --font-size-5xl: 5rem;
+  --font-weight-bold: 800;
+  --line-height-tight: 0.95;
+  --line-height-normal: 1.7;
+  --border-radius-sm: 0;
+  --border-radius: 0;
+  --border-radius-lg: 0;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --transition-fast: 100ms ease;
+  --transition-base: 200ms ease;
+}
+
+/* ============================
+   Global — Dark Mode Base
+   ============================ */
+
+body {
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: #000000;
+}
+
+/* ============================
+   Typography — Massive, Mixed Treatments
+   ============================ */
+
+h1 {
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 4.5rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 5.5rem;
+  }
+
+  h2 {
+    font-size: 3.5rem;
+  }
+}
+
+/* Color accent for key words — wrap a word in <span class="text-accent"> */
+.text-accent {
+  color: var(--color-primary);
+}
+
+/* Outline text treatment — wrap a word in <span class="text-outline"> */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4);
+}
+
+@media (min-width: 768px) {
+  .text-outline {
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* ============================
+   Hero — Full Dark, Viewport-Dominating Type
+   ============================ */
+
+.hero {
+  background-color: #0a0a0a;
+  min-height: 90vh;
+  padding-top: 8rem;
+  padding-bottom: 6rem;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    min-height: 95vh;
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    align-items: center;
+  }
+}
+
+.hero__content {
+  max-width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero__tagline {
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+  margin-bottom: var(--spacing-xl);
+}
+
+.hero__title {
+  font-size: 3rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (min-width: 640px) {
+  .hero__title {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero__title {
+    font-size: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__title {
+    font-size: 6.5rem;
+    line-height: 0.88;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero__title {
+    font-size: 7.5rem;
+  }
+}
+
+/* The hero title should fill the width — it's the main visual element */
+.hero__title::after {
+  display: none;
+}
+
+.hero__description {
+  font-size: var(--font-size-base);
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 28rem;
+  line-height: 1.7;
+}
+
+/* ============================
+   Buttons — Sharp, Bright, Confident
+   ============================ */
+
+.btn {
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: #000000;
+  border: 2px solid var(--color-primary);
+  padding: 0.875rem 2rem;
+}
+
+.btn--primary:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn--secondary {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  background: transparent;
+}
+
+.btn--secondary:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+  background: transparent;
+  transform: none;
+}
+
+.btn--large {
+  padding: 1rem 2.5rem;
+  font-size: var(--font-size-sm);
+}
+
+/* ============================
+   Cards — Dark Surface, Bright Borders on Hover
+   ============================ */
+
+.card {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.card:hover {
+  border-color: var(--color-primary);
+  transform: none;
+  box-shadow: none;
+}
+
+.card:hover .card__image img {
+  transform: scale(1.08);
+}
+
+.card__image {
+  border-radius: 0;
+}
+
+.card__body {
+  padding: var(--spacing-xl);
+}
+
+.card__title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: var(--font-size-base);
+  color: #ffffff;
+}
+
+.card__text {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.card__meta {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================
+   Sections — Dark, Strong Dividers
+   ============================ */
+
+.section {
+  padding: 5rem 0;
+  background-color: #0a0a0a;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 6rem 0;
+  }
+}
+
+.section+.section {
+  border-top: 1px solid var(--color-border);
+}
+
+.section--alt {
+  background-color: var(--color-bg-alt);
+}
+
+/* One section per page can be the "impact" section — primary color bg */
+.section--impact {
+  background-color: var(--color-primary);
+  color: #000000;
+}
+
+.section--impact h2,
+.section--impact h3 {
+  color: #000000;
+}
+
+.section--impact p,
+.section--impact .text-light {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Section headers */
+.section-header__label {
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+}
+
+.section-header__title {
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.section-header__description {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================
+   Navigation — Dark, Clean
+   ============================ */
+
+.header {
+  background-color: rgba(10, 10, 10, 0.95);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.header.is-scrolled {
+  box-shadow: none;
+  background-color: rgba(10, 10, 10, 0.98);
+}
+
+.header__logo {
+  color: #ffffff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.header__nav a {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: var(--font-size-xs);
+}
+
+.header__nav a::after {
+  display: none;
+}
+
+.header__nav a:hover {
+  color: #ffffff;
+}
+
+.header__nav a.active {
+  color: var(--color-primary);
+}
+
+.header__cta .btn {
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #ffffff;
+}
+
+.header__cta .btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ============================
+   Testimonials — Dark, Bold Accent
+   ============================ */
+
+.testimonial {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0;
+  padding: var(--spacing-xl) var(--spacing-2xl);
+}
+
+.testimonial:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  border-left-color: var(--color-primary);
+}
+
+.testimonial__text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.testimonial__author {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================
+   Team Cards — Grayscale, Square
+   ============================ */
+
+.team-card__photo {
+  aspect-ratio: 1 / 1;
+  border-radius: 0;
+}
+
+.team-card__photo img {
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter 0.4s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.team-card:hover .team-card__photo img {
+  filter: grayscale(0%) contrast(1);
+  transform: scale(1.03);
+}
+
+.team-card__name {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.team-card__title {
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.team-card__bio {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================
+   CTA Banner — High Impact
+   ============================ */
+
+.cta-banner {
+  background-color: var(--color-primary);
+  color: #000000;
+  border-top: none;
+}
+
+.cta-banner::before {
+  display: none;
+}
+
+.cta-banner h2 {
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #000000;
+}
+
+.cta-banner p {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.cta-banner .btn {
+  background-color: #000000;
+  border: 2px solid #000000;
+  color: #ffffff;
+}
+
+.cta-banner .btn:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+}
+
+/* ============================
+   Footer — Pure Black
+   ============================ */
+
+.footer {
+  background-color: #000000;
+  color: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer h4 {
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  font-size: var(--font-size-xs);
+}
+
+.footer__links a {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footer__links a:hover {
+  color: var(--color-primary);
+  transform: none;
+}
+
+.footer__social a {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footer__social a:hover {
+  color: var(--color-primary);
+}
+
+.footer__bottom {
+  border-top-color: var(--color-border);
+}
+
+.footer__description {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================
+   Forms — Dark Fields
+   ============================ */
+
+.form-group label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  color: #ffffff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--color-primary);
+  box-shadow: none;
+  background-color: var(--color-bg-alt);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.form-success {
+  background-color: var(--color-bg-alt);
+  color: var(--color-primary);
+}
+
+/* ============================
+   List Items — Clean Dividers
+   ============================ */
+
+.list-item {
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-xl) 0;
+}
+
+.list-item:hover .list-item__name {
+  color: var(--color-primary);
+}
+
+.list-item__name {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.list-item__description {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.list-item__price {
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* ============================
+   Pricing Cards — Dark, Featured Inverts
+   ============================ */
+
+.pricing-card {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+}
+
+.pricing-card:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: none;
+  box-shadow: none;
+}
+
+.pricing-card__name {
+  color: #ffffff;
+}
+
+.pricing-card__features li {
+  color: rgba(255, 255, 255, 0.6);
+  border-bottom-color: var(--color-border);
+}
+
+.pricing-card__features li::before {
+  color: var(--color-primary);
+}
+
+.pricing-card--featured {
+  border-color: var(--color-primary);
+  border-width: 2px;
+  background-color: var(--color-primary);
+  color: #000000;
+}
+
+.pricing-card--featured .pricing-card__name {
+  color: #000000;
+}
+
+.pricing-card--featured .pricing-card__features li {
+  color: rgba(0, 0, 0, 0.7);
+  border-bottom-color: rgba(0, 0, 0, 0.15);
+}
+
+.pricing-card--featured .pricing-card__features li::before {
+  color: #000000;
+}
+
+.pricing-card--featured::before {
+  background-color: #000000;
+  color: var(--color-primary);
+  border-radius: 0;
+}
+
+.pricing-card--featured .btn {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.price {
+  color: #ffffff;
+}
+
+.price--large {
+  color: #ffffff;
+}
+
+.price__period {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================
+   Badges — Sharp, Dark
+   ============================ */
+
+.badge {
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  font-size: var(--font-size-xs);
+  background-color: var(--color-bg-alt);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.badge--primary {
+  background-color: rgba(249, 115, 22, 0.15);
+  color: var(--color-primary);
+}
+
+/* ============================
+   Hours Table — Dark
+   ============================ */
+
+.hours-table tr {
+  border-bottom-color: var(--color-border);
+}
+
+.hours-table tr:hover {
+  background-color: var(--color-bg-alt);
+}
+
+.hours-table td:first-child {
+  color: #ffffff;
+}
+
+.hours-table td:last-child {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.hours-table tr.is-today {
+  background-color: var(--color-primary);
+}
+
+.hours-table tr.is-today td {
+  color: #000000;
+  font-weight: 700;
+}
+
+/* ============================
+   Map — Sharp
+   ============================ */
+
+.map-embed {
+  border-radius: 0;
+  border: 1px solid var(--color-border);
+}
+
+/* ============================
+   404 — Huge, Bold
+   ============================ */
+
+.error-page {
+  background-color: #0a0a0a;
+}
+
+.error-page__code {
+  font-size: 12rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.06em;
+}
+
+.error-page__title {
+  color: #ffffff;
+}
+
+.error-page__text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================
+   Dividers & Rules
+   ============================ */
+
+.divider {
+  height: 3px;
+  background-color: var(--color-primary);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+/* ============================
+   Mobile Menu — Dark
+   ============================ */
+
+.mobile-menu {
+  background-color: #0a0a0a;
+  border-left: 1px solid var(--color-border);
+}
+
+.mobile-menu__close {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.mobile-menu__close:hover {
+  color: #ffffff;
+}
+
+.mobile-menu__nav a {
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+}
+
+.mobile-menu__nav a:hover {
+  color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+.mobile-menu__nav a.active {
+  color: var(--color-primary);
+}
+
+.mobile-backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* ============================
+   Schedule — Dark
+   ============================ */
+
+.schedule-day__name {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.schedule-item:hover {
+  background-color: var(--color-bg-alt);
+}
+
+.schedule-item__name {
+  color: #ffffff;
+}
+
+.schedule-item__time {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.schedule-item__instructor {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================
+   Skeleton — Dark
+   ============================ */
+
+.skeleton {
+  background: linear-gradient(90deg, #141414 25%, #1f1f1f 50%, #141414 75%);
+  background-size: 200% 100%;
+}
+
+body:not(.is-loaded) [data-bind]:empty,
+body:not(.is-loaded) [data-template]:empty {
+  background: linear-gradient(90deg, #141414 25%, #1f1f1f 50%, #141414 75%);
+  background-size: 200% 100%;
+}
+
+/* ============================
+   Utilities — Dark mode overrides
+   ============================ */
+
+.text-light {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+small {
+  color: rgba(255, 255, 255, 0.4);
+}

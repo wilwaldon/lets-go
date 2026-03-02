@@ -1,0 +1,232 @@
+/* style-classic.css — Classic Professional */
+/* Append ENTIRE file to project's css/styles.css */
+/* Copy :root block into variables.css */
+
+:root {
+  --color-primary: #1e3a5f;
+  --color-primary-hover: #162d4a;
+  --color-primary-light: #f0f4f8;
+  --color-secondary: #1e293b;
+  --color-text: #1e293b;
+  --color-text-light: #64748b;
+  --color-bg: #ffffff;
+  --color-bg-alt: #ffffff;
+  --color-bg-dark: #1e293b;
+  --color-border: #d1d5db;
+  --color-border-light: #e5e7eb;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 2.75rem;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.7;
+  --border-radius-sm: 0.125rem;
+  --border-radius: 0.25rem;
+  --border-radius-lg: 0.25rem;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --transition-fast: 100ms ease;
+  --transition-base: 150ms ease;
+}
+
+/* Typography — Conservative */
+h1 {
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h2 {
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+/* Hero — Standard, no drama */
+.hero {
+  min-height: auto;
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    min-height: auto;
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.hero__tagline {
+  animation: none;
+  opacity: 1;
+}
+
+.hero__title {
+  animation: none;
+  opacity: 1;
+}
+
+.hero__description {
+  animation: none;
+  opacity: 1;
+}
+
+.hero__actions {
+  animation: none;
+  opacity: 1;
+}
+
+/* Kill ALL animations */
+.animate {
+  opacity: 1;
+  animation: none !important;
+}
+
+.animate.is-visible {
+  animation: none !important;
+}
+
+[data-stagger]>.animate {
+  animation-delay: 0ms !important;
+}
+
+main {
+  animation: none;
+}
+
+/* Sections — Conservative padding */
+.section {
+  padding: 3.5rem 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 5rem 0;
+  }
+}
+
+.section--alt {
+  background-color: #ffffff;
+  border-top: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* Cards — Minimal hover */
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+}
+
+.card:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--color-primary);
+}
+
+.card:hover .card__image img {
+  transform: none;
+}
+
+/* Buttons — Conservative */
+.btn {
+  border-radius: 0.25rem;
+}
+
+.btn--primary:hover {
+  transform: none;
+  box-shadow: none;
+  background-color: var(--color-primary-hover);
+}
+
+.btn--secondary:hover {
+  transform: none;
+}
+
+/* Navigation — Simple */
+.header {
+  backdrop-filter: none;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header.is-scrolled {
+  box-shadow: none;
+}
+
+.header__nav a::after {
+  display: none;
+}
+
+.header__nav a.active {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.header__nav a:hover {
+  color: var(--color-primary);
+}
+
+/* Testimonials — Simple italic */
+.testimonial {
+  border: none;
+  padding: var(--spacing-lg) 0;
+  border-bottom: 1px solid var(--color-border-light);
+  border-radius: 0;
+}
+
+.testimonial:hover {
+  border-color: var(--color-border-light);
+  box-shadow: none;
+}
+
+.testimonial__text {
+  font-style: italic;
+}
+
+/* Team — Conservative */
+.team-card:hover {
+  transform: none;
+}
+
+.team-card__photo {
+  aspect-ratio: 3 / 4;
+  border-radius: 0.25rem;
+}
+
+/* CTA Banner */
+.cta-banner {
+  background-color: var(--color-primary);
+}
+
+.cta-banner::before {
+  display: none;
+}
+
+/* Forms */
+.form-group input,
+.form-group textarea {
+  border-radius: 0.25rem;
+}
+
+/* Footer — Simple */
+.footer {
+  background-color: var(--color-bg-dark);
+}
+
+.footer__links a:hover {
+  transform: none;
+  color: #ffffff;
+}
+
+/* Mobile menu */
+.mobile-menu__nav a:hover {
+  transform: none;
+  color: var(--color-primary);
+}
+
+/* No hover lift on anything */
+.pricing-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.list-item:hover .list-item__name {
+  color: var(--color-text);
+}

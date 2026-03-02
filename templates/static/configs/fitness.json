@@ -1,0 +1,68 @@
+{
+  "pages": {
+    "page-2": { "filename": "classes.html", "label": "Classes", "title": "Class Schedule" },
+    "page-3": { "filename": "membership.html", "label": "Membership", "title": "Membership Plans" },
+    "page-4": { "filename": "trainers.html", "label": "Trainers", "title": "Our Trainers" }
+  },
+  "hero": {
+    "tagline": "Fitness & Training",
+    "headline": "Stronger starts here",
+    "subheadline": "Group classes, personal training, and a community that shows up. First class is on us.",
+    "ctaText": "Try a Free Class",
+    "ctaLink": "contact.html",
+    "ctaSecondary": "See Class Schedule"
+  },
+  "ctaText": "Join Now",
+  "additionalData": {
+    "featured": [
+      { "name": "Group Classes", "description": "From HIIT to yoga, our schedule has something for every fitness level. Small class sizes mean real coaching." },
+      { "name": "Personal Training", "description": "One-on-one programming designed around your goals, your schedule, and your body." },
+      { "name": "Open Gym", "description": "Full access to equipment during all operating hours. No waiting, no crowds." }
+    ],
+    "classes": [
+      { "name": "HIIT Circuit", "instructor": "Marcus", "day": "Monday", "time": "6:00 AM", "duration": "45 min", "level": "All levels" },
+      { "name": "Yoga Flow", "instructor": "Priya", "day": "Monday", "time": "12:00 PM", "duration": "60 min", "level": "All levels" },
+      { "name": "Strength & Conditioning", "instructor": "Marcus", "day": "Tuesday", "time": "6:00 AM", "duration": "60 min", "level": "Intermediate" },
+      { "name": "Spin", "instructor": "Jamie", "day": "Tuesday", "time": "5:30 PM", "duration": "45 min", "level": "All levels" },
+      { "name": "HIIT Circuit", "instructor": "Marcus", "day": "Wednesday", "time": "6:00 AM", "duration": "45 min", "level": "All levels" },
+      { "name": "Yoga Flow", "instructor": "Priya", "day": "Wednesday", "time": "12:00 PM", "duration": "60 min", "level": "All levels" },
+      { "name": "Boxing Fundamentals", "instructor": "Jamie", "day": "Thursday", "time": "6:00 AM", "duration": "60 min", "level": "Beginner" },
+      { "name": "Strength & Conditioning", "instructor": "Marcus", "day": "Thursday", "time": "5:30 PM", "duration": "60 min", "level": "Intermediate" },
+      { "name": "HIIT Circuit", "instructor": "Marcus", "day": "Friday", "time": "6:00 AM", "duration": "45 min", "level": "All levels" },
+      { "name": "Community WOD", "instructor": "All Coaches", "day": "Saturday", "time": "9:00 AM", "duration": "60 min", "level": "All levels" }
+    ],
+    "memberships": [
+      {
+        "name": "Basic",
+        "price": 49,
+        "period": "month",
+        "features": ["Open gym access", "Locker room & showers", "1 free class per week", "Mobile app access"],
+        "featured": false
+      },
+      {
+        "name": "Unlimited",
+        "price": 99,
+        "period": "month",
+        "features": ["Everything in Basic", "Unlimited group classes", "Priority booking", "Quarterly fitness assessment", "Guest passes (2/month)"],
+        "featured": true
+      },
+      {
+        "name": "Premium",
+        "price": 179,
+        "period": "month",
+        "features": ["Everything in Unlimited", "4 personal training sessions/month", "Nutrition consultation", "Recovery room access", "Towel service"],
+        "featured": false
+      }
+    ],
+    "testimonials": [
+      { "name": "Chris W.", "text": "I've tried every gym in town. This is the first one where I actually look forward to showing up. The coaches know your name." },
+      { "name": "Aisha J.", "text": "The 6 AM HIIT class changed my mornings. Great energy, smart programming, and I'm out the door by 7." },
+      { "name": "Tom H.", "text": "Signed up for personal training after a back injury. Marcus worked with my PT to build a program that got me back to full strength." }
+    ],
+    "team": [
+      { "name": "Marcus Rivera", "title": "Head Coach & Owner", "bio": "CSCS certified with 10 years of coaching experience. Marcus builds programs that are challenging, safe, and scalable for any level.", "photo": "" },
+      { "name": "Priya Patel", "title": "Yoga & Mobility Coach", "bio": "RYT-500 certified. Priya's classes blend traditional yoga with modern mobility work. Her Wednesday noon class has a waitlist.", "photo": "" },
+      { "name": "Jamie Okonkwo", "title": "Spin & Boxing Coach", "bio": "Former amateur boxer turned fitness coach. Jamie's classes are high-energy and meticulously programmed.", "photo": "" }
+    ]
+  }
+}

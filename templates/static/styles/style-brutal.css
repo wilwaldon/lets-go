@@ -1,0 +1,679 @@
+/* style-brutal.css — Neo-Brutalism / Anti-Design */
+/* Harsh borders, high contrast, intentional chaos, raw aesthetics */
+/* Inspired by: Gumroad, Hacker News brutalist redesigns, anti-design movement */
+/* Append ENTIRE file to project's css/styles.css */
+/* Copy :root block into variables.css */
+
+/* ============================
+   Token Overrides
+   ============================ */
+
+:root {
+  --color-primary: #ff00ff;
+  --color-primary-hover: #cc00cc;
+  --color-primary-light: #fff0ff;
+  --color-secondary: #00ff00;
+  --color-text: #000000;
+  --color-text-light: #333333;
+  --color-text-inverse: #000000;
+  --color-bg: #ffffff;
+  --color-bg-alt: #ffff00;
+  --color-bg-dark: #000000;
+  --color-border: #000000;
+  --color-border-light: #666666;
+  --color-accent-1: #ff0000;
+  --color-accent-2: #0000ff;
+  --color-accent-3: #ffff00;
+  --font-weight-normal: 400;
+  --font-weight-bold: 900;
+  --line-height-tight: 1;
+  --line-height-normal: 1.6;
+  --border-radius-sm: 0;
+  --border-radius: 0;
+  --border-radius-lg: 0;
+  --border-width: 4px;
+  --shadow-brutal: 8px 8px 0;
+  --shadow-brutal-hover: 12px 12px 0;
+}
+
+/* ============================
+   Body — High Contrast
+   ============================ */
+
+body {
+  background: #fff;
+  color: #000;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: #000;
+}
+
+/* ============================
+   Typography — Loud, Uppercase
+   ============================ */
+
+h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+h4, h5, h6 {
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* ============================
+   Header — Thick Border
+   ============================ */
+
+.header {
+  background: #fff;
+  border-bottom: var(--border-width) solid #000;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.header__logo {
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.header__nav a {
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  border: 3px solid transparent;
+  transition: all 0.1s ease;
+}
+
+.header__nav a:hover {
+  border: 3px solid #000;
+  background: var(--color-primary);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* ============================
+   Hero — Asymmetric Blocks
+   ============================ */
+
+.hero--modern {
+  background: var(--color-accent-3);
+  border: var(--border-width) solid #000;
+  position: relative;
+  padding: 6rem 0;
+  overflow: visible;
+}
+
+.hero--modern::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 200px;
+  height: 200px;
+  background: var(--color-primary);
+  border: var(--border-width) solid #000;
+  z-index: -1;
+}
+
+.hero--modern::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 50px;
+  width: 150px;
+  height: 150px;
+  background: var(--color-secondary);
+  border: var(--border-width) solid #000;
+  z-index: -1;
+}
+
+.hero__tagline {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.hero__title {
+  font-size: clamp(3rem, 10vw, 7rem);
+  line-height: 0.85;
+  text-shadow: 4px 4px 0 var(--color-primary);
+}
+
+.hero__description {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.4;
+  max-width: 50ch;
+  border-left: 8px solid #000;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* ============================
+   Bento Grid — Brutal Cards
+   ============================ */
+
+.bento-item {
+  background: #fff;
+  border: var(--border-width) solid #000;
+  box-shadow: var(--shadow-brutal) #000;
+  padding: 2.5rem;
+  transition: all 0.1s ease;
+  position: relative;
+}
+
+.bento-item:nth-child(1) {
+  background: var(--color-accent-1);
+}
+
+.bento-item:nth-child(2) {
+  background: var(--color-accent-2);
+  color: #fff;
+}
+
+.bento-item:nth-child(3) {
+  background: var(--color-accent-3);
+}
+
+.bento-item:hover {
+  transform: translate(-8px, -8px);
+  box-shadow: var(--shadow-brutal-hover) #000;
+}
+
+.bento-item__title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin-bottom: 1rem;
+}
+
+.bento-item__text {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* Color text for contrast on colored backgrounds */
+.bento-item:nth-child(2) .bento-item__title,
+.bento-item:nth-child(2) .bento-item__text {
+  color: #fff;
+}
+
+/* ============================
+   Buttons — Box Shadow Interaction
+   ============================ */
+
+.btn {
+  border: 3px solid #000;
+  background: #fff;
+  color: #000;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  transition: all 0.1s ease;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #000;
+}
+
+.btn--primary:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 #000;
+}
+
+.btn--secondary {
+  background: #fff;
+  color: #000;
+}
+
+.btn--secondary:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 #000;
+  background: var(--color-secondary);
+}
+
+/* ============================
+   Testimonials — Stripped Down
+   ============================ */
+
+.testimonial {
+  background: #fff;
+  border: var(--border-width) solid #000;
+  box-shadow: var(--shadow-brutal) #000;
+  padding: 2rem;
+  transition: all 0.1s ease;
+}
+
+.testimonial:nth-child(1) {
+  background: var(--color-primary);
+}
+
+.testimonial:nth-child(2) {
+  background: var(--color-secondary);
+  margin-top: 3rem;
+}
+
+.testimonial:nth-child(3) {
+  background: var(--color-accent-3);
+}
+
+.testimonial:hover {
+  transform: rotate(-1deg) translate(-4px, -4px);
+  box-shadow: 8px 8px 0 #000;
+}
+
+.testimonial__text {
+  font-size: 1.25rem;
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial__text::before {
+  content: none;
+}
+
+.testimonial__author {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+}
+
+/* ============================
+   Split Layout — Offset Blocks
+   ============================ */
+
+.split-layout__content {
+  background: var(--color-accent-1);
+  border: var(--border-width) solid #000;
+  padding: 3rem;
+  box-shadow: 12px 12px 0 #000;
+}
+
+.split-layout__media {
+  position: relative;
+  transform: translateY(2rem);
+}
+
+.split-layout__media .glass-card {
+  background: #fff;
+  border: var(--border-width) solid #000;
+  box-shadow: var(--shadow-brutal) #000;
+  backdrop-filter: none;
+}
+
+.map-embed {
+  border: var(--border-width) solid #000;
+}
+
+@media (max-width: 968px) {
+  .split-layout__media {
+    transform: none;
+  }
+}
+
+/* ============================
+   CTA Banner — Inverted
+   ============================ */
+
+.cta-banner {
+  background: #000;
+  color: #fff;
+  border-top: var(--border-width) solid #fff;
+  border-bottom: var(--border-width) solid #fff;
+  position: relative;
+  padding: 8rem 0;
+  overflow: visible;
+}
+
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  background: var(--color-primary);
+  border: var(--border-width) solid #fff;
+  z-index: 0;
+}
+
+.cta-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  right: 15%;
+  width: 200px;
+  height: 200px;
+  background: var(--color-secondary);
+  border: var(--border-width) solid #fff;
+  z-index: 0;
+}
+
+.cta-banner__content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-banner__title {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.9;
+  text-shadow: 6px 6px 0 var(--color-primary);
+  margin-bottom: 2rem;
+}
+
+.cta-banner__text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+}
+
+.cta-banner .btn {
+  border-color: #fff;
+  box-shadow: 4px 4px 0 #fff;
+  background: var(--color-primary);
+  color: #000;
+}
+
+.cta-banner .btn:hover {
+  box-shadow: 0 0 0 #fff;
+}
+
+/* ============================
+   Footer — Heavy Border
+   ============================ */
+
+.footer {
+  background: #000;
+  color: #fff;
+  border-top: var(--border-width) solid #fff;
+  backdrop-filter: none;
+}
+
+.footer__brand {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.footer__heading {
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-secondary);
+}
+
+.footer__links a {
+  font-weight: 700;
+  border-left: 4px solid transparent;
+  padding-left: 0.5rem;
+}
+
+.footer__links a:hover {
+  border-left-color: var(--color-primary);
+}
+
+/* ============================
+   Section Headers — Brutal Labels
+   ============================ */
+
+.section-header__label {
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.section-header__title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+/* ============================
+   Decorative Elements
+   ============================ */
+
+.brutal-line {
+  width: 100%;
+  height: var(--border-width);
+  background: #000;
+  margin: 4rem 0;
+  position: relative;
+}
+
+.brutal-line::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 20%;
+  width: 30px;
+  height: 30px;
+  background: var(--color-primary);
+  border: 3px solid #000;
+  transform: rotate(45deg);
+}
+
+.brutal-box {
+  width: 60px;
+  height: 60px;
+  background: var(--color-secondary);
+  border: var(--border-width) solid #000;
+  position: absolute;
+  transform: rotate(12deg);
+}
+
+/* ============================
+   Mobile Menu — Brutal Drawer
+   ============================ */
+
+.mobile-menu {
+  background: var(--color-accent-3);
+  border: var(--border-width) solid #000;
+  border-right: none;
+  box-shadow: -8px 0 0 #000;
+  backdrop-filter: none;
+}
+
+.mobile-menu__close {
+  background: #000;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border: none;
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+.mobile-backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: none;
+}
+
+/* ============================
+   Hours Table — Grid Style
+   ============================ */
+
+.hours-table {
+  border: var(--border-width) solid #000;
+}
+
+.hours-table td,
+.hours-table th {
+  border: 2px solid #000;
+  padding: 1rem;
+  font-weight: 700;
+}
+
+.hours-table tr.is-today {
+  background: var(--color-primary);
+}
+
+/* ============================
+   Forms — Hard Edges
+   ============================ */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  border: 3px solid #000;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  transition: all 0.1s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 4px 4px 0 var(--color-primary);
+  transform: translate(-2px, -2px);
+}
+
+/* ============================
+   Links — Underline on Hover
+   ============================ */
+
+a {
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.1s ease;
+}
+
+a:hover {
+  border-bottom-color: var(--color-primary);
+}
+
+/* ============================
+   Asymmetric Grid (Intentional Chaos)
+   ============================ */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+}
+
+.bento-item:nth-child(1) {
+  grid-column: span 7;
+  grid-row: span 2;
+}
+
+.bento-item:nth-child(2) {
+  grid-column: span 5;
+}
+
+.bento-item:nth-child(3) {
+  grid-column: span 5;
+  grid-row: span 2;
+}
+
+.bento-item:nth-child(4) {
+  grid-column: span 7;
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-item:nth-child(1),
+  .bento-item:nth-child(2),
+  .bento-item:nth-child(3),
+  .bento-item:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* ============================
+   No Smooth Animations
+   ============================ */
+
+* {
+  transition-timing-function: linear !important;
+  transition-duration: 0.1s !important;
+}
+
+.scroll-fade {
+  animation-duration: 0.2s !important;
+  animation-timing-function: linear !important;
+}
+
+/* ============================
+   Reduced Motion Override
+   ============================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ============================
+   Print Styles (Brutalist Override)
+   ============================ */
+
+@media print {
+  * {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+
+  .header,
+  .footer {
+    border: 3px solid #000 !important;
+  }
+}

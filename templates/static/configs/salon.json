@@ -1,0 +1,43 @@
+{
+  "pages": {
+    "page-2": { "filename": "services.html", "label": "Services", "title": "Services & Pricing" },
+    "page-3": { "filename": "book.html", "label": "Book", "title": "Book an Appointment" },
+    "page-4": { "filename": "team.html", "label": "Team", "title": "Our Team" }
+  },
+  "hero": {
+    "tagline": "Hair & Beauty",
+    "headline": "Look like yourself, only better",
+    "subheadline": "Precise cuts, natural color, and styling that works with your life — not against it. Book online or walk in.",
+    "ctaText": "Book Now",
+    "ctaLink": "book.html",
+    "ctaSecondary": "View Services"
+  },
+  "ctaText": "Book Now",
+  "additionalData": {
+    "featured": [
+      { "name": "Precision Cuts", "description": "Tailored haircuts that work with your hair's natural texture and your daily routine." },
+      { "name": "Balayage & Color", "description": "Hand-painted highlights and full color services using low-damage, high-shine formulas." },
+      { "name": "Blowouts & Styling", "description": "Event-ready styling or a midweek refresh. Walk-ins welcome when available." }
+    ],
+    "services": [
+      { "name": "Women's Haircut", "description": "Consultation, shampoo, precision cut, and style.", "duration": "60 min", "price": 75 },
+      { "name": "Men's Haircut", "description": "Consultation, cut, and style. Includes hot towel finish.", "duration": "45 min", "price": 45 },
+      { "name": "Balayage", "description": "Hand-painted highlights for natural, sun-kissed dimension.", "duration": "150 min", "price": 200 },
+      { "name": "Single Process Color", "description": "Full head all-over color. Includes toner and gloss.", "duration": "90 min", "price": 120 },
+      { "name": "Blowout", "description": "Shampoo and professional blowout styling.", "duration": "45 min", "price": 55 },
+      { "name": "Deep Conditioning Treatment", "description": "Intensive moisture or protein treatment based on hair needs.", "duration": "30 min", "price": 40 },
+      { "name": "Bridal Styling", "description": "Trial session plus event-day styling. Includes touch-up kit.", "duration": "90 min", "price": 175 },
+      { "name": "Kids' Haircut", "description": "Ages 12 and under. Patient stylists, relaxed environment.", "duration": "30 min", "price": 30 }
+    ],
+    "testimonials": [
+      { "name": "Megan P.", "text": "I've been going here for two years and my hair has never looked better. They actually listen to what you want." },
+      { "name": "Rachel T.", "text": "Best balayage in town. The color is always natural and grows out beautifully." },
+      { "name": "David L.", "text": "Clean shop, no fuss, great cut every time. In and out in 30 minutes." }
+    ],
+    "team": [
+      { "name": "Adriana Cole", "title": "Owner & Senior Stylist", "bio": "12 years behind the chair. Adriana specializes in lived-in color and effortless cuts that grow out gracefully.", "photo": "" },
+      { "name": "Jordan Blake", "title": "Colorist", "bio": "Trained at Bumble & Bumble in New York. Jordan's balayage work has a devoted following.", "photo": "" },
+      { "name": "Sam Nguyen", "title": "Stylist", "bio": "Sam brings precision and calm to every appointment. Known for clean fades and textured crops.", "photo": "" }
+    ]
+  }
+}
