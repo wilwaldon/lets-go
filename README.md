@@ -30,16 +30,31 @@ Then it builds everything.
 
 🚀 **Major upgrade:** Templates now feature cutting-edge 2025-2026 technologies:
 
+### Phase 1: Modern Features (Completed)
 - **3 new "Future" styles:** Kinetic, Glass, Brutal
 - **CSS scroll-driven animations** (native, 60fps)
 - **Bento grid layouts** (Apple-style)
 - **Glassmorphism** (Liquid Glass aesthetic)
 - **View Transitions API** (smooth page changes)
 - **Variable fonts** (animated weight shifts)
+- **Container queries** (component-based responsive design)
+
+### Phase 2: Bleeding Edge Features (NEW!)
+- **15 cutting-edge layout techniques** including:
+  - CSS Anchor Positioning (Chrome 125+)
+  - CSS Subgrid (perfect alignment across nested grids)
+  - CSS Masonry Layout (native Pinterest-style)
+  - Scroll-linked color transitions
+  - Clip-path morphing
+  - Text reveals (character-by-character)
+  - Magnetic cursor effects
+  - Full-bleed breakout grids
+  - 3D perspective scrolling
+  - Morphing blob shapes
 
 All with progressive enhancement and graceful fallbacks for older browsers.
 
-See `UPGRADE-SUMMARY.md` for complete details.
+See `UPGRADE-SUMMARY.md` and `BLEEDING-EDGE-GUIDE.md` for complete details.
 
 ## Design Styles
 
@@ -105,12 +120,31 @@ your-site/
 
 ### Modern (2025-2026)
 
+- **Container queries** — Components respond to their container size, not viewport (Baseline 2023)
 - **CSS scroll-driven animations** — Native, off-main-thread animations triggered by scroll (Interop 2025)
 - **Bento grid layouts** — Apple-style variable-sized cards with hover depth
 - **Glassmorphism** — Translucent surfaces with backdrop-filter blur and layered depth
 - **View Transitions API** — Smooth animated page changes (Firefox stable Oct 2025)
 - **Variable fonts** — Fine-grained weight control, 75% smaller file sizes
 - **Kinetic typography** — Oversized headings with scroll-reactive weight shifts
+
+### Bleeding Edge (2025-2026)
+
+- **CSS Anchor Positioning** — Position tooltips/popovers relative to any element (Chrome 125+)
+- **CSS Subgrid** — Perfect alignment across nested grid layouts (Baseline 2023)
+- **CSS Masonry** — Native Pinterest-style layouts with fallback (Experimental)
+- **Scroll-linked colors** — Background colors morph as you scroll (Chrome 115+)
+- **Clip-path morphing** — Dynamic shapes that transform on hover/scroll
+- **Text reveals** — Character-by-character animated text entrances
+- **Magnetic cursor** — Elements follow and react to mouse movement
+- **3D tilt effects** — Cards tilt based on mouse position
+- **Floating sticky** — Sticky elements that scale/fade while scrolling
+- **Full-bleed grids** — Content that breaks out while maintaining alignment
+- **Asymmetric splits** — Column widths that swap as you scroll
+- **Diagonal layouts** — Rotated grids for dynamic energy
+- **3D perspective** — Multi-layer parallax with depth
+- **Morphing blobs** — Organic animated background shapes
+- **Scroll progress** — Visual indicator of page scroll position
 
 ### Core
 
@@ -158,13 +192,29 @@ When you run `/letsgo`, Claude Code reads the docs, copies the base template, me
 
 All modern features use progressive enhancement with graceful fallbacks:
 
-| Feature           | Chrome | Firefox  | Safari   | Edge | Mobile     |
-| ----------------- | ------ | -------- | -------- | ---- | ---------- |
-| View Transitions  | ✅     | ✅ v144+ | Polyfill | ✅   | ✅         |
-| Scroll Animations | ✅     | ✅ v144+ | Polyfill | ✅   | ✅         |
-| Glassmorphism     | ✅     | ✅       | ✅       | ✅   | ✅ iOS 14+ |
-| Variable Fonts    | ✅     | ✅       | ✅       | ✅   | ✅         |
-| Bento Grids       | ✅     | ✅       | ✅       | ✅   | ✅         |
+### Core Modern Features
+
+| Feature           | Chrome  | Firefox  | Safari  | Edge    | Mobile     |
+| ----------------- | ------- | -------- | ------- | ------- | ---------- |
+| Container Queries | ✅ v105+ | ✅ v110+ | ✅ v16+ | ✅ v105+ | ✅         |
+| View Transitions  | ✅      | ✅ v144+ | Polyfill | ✅     | ✅         |
+| Scroll Animations | ✅ v115+ | ✅ v144+ | Polyfill | ✅     | ✅         |
+| Glassmorphism     | ✅      | ✅       | ✅      | ✅      | ✅ iOS 14+ |
+| Variable Fonts    | ✅      | ✅       | ✅      | ✅      | ✅         |
+| Bento Grids       | ✅      | ✅       | ✅      | ✅      | ✅         |
+
+### Bleeding Edge Features
+
+| Feature                | Chrome  | Firefox | Safari  | Edge    | Fallback              |
+| ---------------------- | ------- | ------- | ------- | ------- | --------------------- |
+| Anchor Positioning     | ✅ v125+ | ❌      | ✅ v18.2+ | ✅ v125+ | Static positioning    |
+| Subgrid                | ✅ v117+ | ✅ v71+ | ✅ v16+ | ✅ v117+ | Standard grid         |
+| Masonry                | Flag    | Flag    | ❌      | Flag    | Column-count          |
+| Scroll-Linked Colors   | ✅ v115+ | ✅ v144+ | Polyfill | ✅ v115+ | Static colors         |
+| Clip-Path              | ✅      | ✅      | ✅      | ✅      | Rectangle             |
+| Magnetic Cursor        | ✅      | ✅      | ✅      | ✅      | Standard hover        |
+| 3D Transforms          | ✅      | ✅      | ✅      | ✅      | 2D fallback           |
+| Morphing Blobs         | ✅      | ✅      | ✅      | ✅      | Static shapes         |
 
 **Older browsers:** Get clean, functional designs without animations. Core experience is identical.
 

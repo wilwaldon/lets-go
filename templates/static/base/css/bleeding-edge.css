@@ -1,0 +1,682 @@
+/* ============================
+   BLEEDING EDGE LAYOUT TECHNIQUES (2025-2026)
+   Cutting-edge CSS features for future-forward design
+   ============================ */
+
+/* ============================
+   1. CSS ANCHOR POSITIONING
+   Browser Support: Chrome 125+, Safari 18.2+
+   ============================ */
+
+/* Anchor positioning for tooltips and popovers */
+@supports (anchor-name: --anchor) {
+  .anchor-target {
+    anchor-name: --tooltip-anchor;
+    position: relative;
+  }
+
+  .tooltip {
+    position: absolute;
+    position-anchor: --tooltip-anchor;
+    bottom: calc(anchor(top) + 10px);
+    left: anchor(center);
+    transform: translateX(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    z-index: 1000;
+  }
+
+  .anchor-target:hover .tooltip,
+  .anchor-target:focus .tooltip {
+    opacity: 1;
+  }
+}
+
+/* ============================
+   2. CSS SUBGRID
+   Browser Support: Firefox 71+, Chrome 117+, Safari 16+
+   ============================ */
+
+@supports (grid-template-columns: subgrid) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .card-with-subgrid {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: auto 1fr auto;
+    gap: 1rem;
+  }
+
+  /* All card images align perfectly */
+  .card-with-subgrid .card__image {
+    grid-column: 1 / -1;
+  }
+
+  /* All card titles align perfectly */
+  .card-with-subgrid .card__title {
+    grid-column: 1 / -1;
+  }
+
+  /* All card actions align at bottom */
+  .card-with-subgrid .card__actions {
+    grid-column: 1 / -1;
+    align-self: end;
+  }
+}
+
+/* ============================
+   3. CSS MASONRY LAYOUT
+   Browser Support: Firefox (flag), Chrome (experimental)
+   ============================ */
+
+/* Native masonry (when supported) */
+@supports (grid-template-rows: masonry) {
+  .masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: masonry;
+    gap: 1.5rem;
+  }
+}
+
+/* Fallback using column-count */
+@supports not (grid-template-rows: masonry) {
+  .masonry-grid {
+    column-count: 3;
+    column-gap: 1.5rem;
+  }
+
+  .masonry-grid > * {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .masonry-grid {
+      column-count: 2;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .masonry-grid {
+      column-count: 1;
+    }
+  }
+}
+
+/* ============================
+   4. SCROLL-LINKED COLOR TRANSITIONS
+   Browser Support: Chrome 115+, Firefox 144+
+   ============================ */
+
+@supports (animation-timeline: scroll()) {
+  /* Color shift as you scroll */
+  .color-shift-section {
+    animation: color-shift linear both;
+    animation-timeline: scroll();
+    animation-range: entry 0% exit 100%;
+  }
+
+  @keyframes color-shift {
+    0% {
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+    50% {
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+    }
+    100% {
+      background: var(--color-secondary);
+      color: var(--color-text-inverse);
+    }
+  }
+
+  /* Text color morphs through rainbow */
+  .rainbow-text {
+    background: linear-gradient(
+      90deg,
+      #ff0000,
+      #ff7f00,
+      #ffff00,
+      #00ff00,
+      #0000ff,
+      #4b0082,
+      #9400d3
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    animation: rainbow-scroll linear both;
+    animation-timeline: scroll();
+  }
+
+  @keyframes rainbow-scroll {
+    to {
+      background-position: 200% 0;
+    }
+  }
+}
+
+/* ============================
+   5. CLIP-PATH MORPHING
+   Browser Support: All modern browsers
+   ============================ */
+
+/* Diagonal section dividers */
+.clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.clip-diagonal-reverse {
+  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Morphing shapes on hover */
+.morph-shape {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  transition: clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.morph-shape:hover {
+  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 85%);
+}
+
+/* Animated clip-path reveal */
+@keyframes clip-reveal {
+  from {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+.clip-reveal {
+  animation: clip-reveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ============================
+   6. TEXT REVEALS WITH VIEW TRANSITIONS
+   Browser Support: Chrome, Firefox (with View Transitions)
+   ============================ */
+
+@supports (animation-timeline: view()) {
+  /* Character-by-character reveal */
+  .text-reveal {
+    display: inline-block;
+  }
+
+  .text-reveal span {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(10px);
+    animation: char-reveal 0.8s ease forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+  }
+
+  /* Stagger each character */
+  .text-reveal span:nth-child(1) { animation-delay: 0s; }
+  .text-reveal span:nth-child(2) { animation-delay: 0.05s; }
+  .text-reveal span:nth-child(3) { animation-delay: 0.1s; }
+  .text-reveal span:nth-child(4) { animation-delay: 0.15s; }
+  .text-reveal span:nth-child(5) { animation-delay: 0.2s; }
+  .text-reveal span:nth-child(6) { animation-delay: 0.25s; }
+  .text-reveal span:nth-child(7) { animation-delay: 0.3s; }
+  .text-reveal span:nth-child(8) { animation-delay: 0.35s; }
+  .text-reveal span:nth-child(9) { animation-delay: 0.4s; }
+  .text-reveal span:nth-child(10) { animation-delay: 0.45s; }
+
+  @keyframes char-reveal {
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  /* Word-by-word slide up */
+  .word-reveal {
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .word-reveal span {
+    display: inline-block;
+    transform: translateY(100%);
+    animation: word-slide linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+
+  @keyframes word-slide {
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ============================
+   7. MAGNETIC CURSOR EFFECTS
+   Browser Support: All modern (requires JS)
+   ============================ */
+
+.magnetic-card {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.magnetic-card.is-magnetic {
+  transform: translate(
+    calc(var(--mouse-x, 0) * 0.1),
+    calc(var(--mouse-y, 0) * 0.1)
+  );
+}
+
+.magnetic-button {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.magnetic-button.is-magnetic {
+  transform: translate(
+    calc(var(--mouse-x, 0) * 0.15),
+    calc(var(--mouse-y, 0) * 0.15)
+  ) scale(1.05);
+}
+
+/* ============================
+   8. SCROLL-SNAP FULL-SCREEN SECTIONS
+   Browser Support: All modern browsers
+   ============================ */
+
+.scroll-snap-container {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.scroll-snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Horizontal scroll snap for galleries */
+.scroll-snap-horizontal {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.scroll-snap-horizontal > * {
+  scroll-snap-align: center;
+  flex-shrink: 0;
+  width: 80%;
+  max-width: 600px;
+}
+
+/* ============================
+   9. FLOATING STICKY ELEMENTS WITH TRANSFORM
+   Browser Support: Chrome 115+, Firefox 144+
+   ============================ */
+
+@supports (animation-timeline: scroll()) {
+  .floating-sticky {
+    position: sticky;
+    top: 2rem;
+    animation: sticky-float linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100vh;
+  }
+
+  @keyframes sticky-float {
+    0% {
+      transform: scale(0.8) translateY(20px);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    90% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    100% {
+      transform: scale(0.8) translateY(-20px);
+      opacity: 0;
+    }
+  }
+
+  /* Sticky element that rotates as you scroll */
+  .sticky-rotate {
+    position: sticky;
+    top: 2rem;
+    animation: sticky-spin linear both;
+    animation-timeline: scroll();
+  }
+
+  @keyframes sticky-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* ============================
+   10. FULL-BLEED BREAKOUT GRID
+   Browser Support: All modern browsers
+   ============================ */
+
+.content-grid {
+  display: grid;
+  grid-template-columns:
+    [full-start] 1fr
+    [content-start] min(65ch, 100%)
+    [content-end] 1fr
+    [full-end];
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.content-grid > * {
+  grid-column: content;
+}
+
+/* Full-bleed elements break out */
+.full-bleed {
+  grid-column: full;
+  width: 100%;
+}
+
+/* Popout (wider than content but not full width) */
+.popout {
+  grid-column: full;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ============================
+   11. ASYMMETRIC SPLIT WITH SCROLL-TRIGGERED SWAP
+   Browser Support: Chrome 115+, Firefox 144+
+   ============================ */
+
+@supports (animation-timeline: scroll()) {
+  .split-swap {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    animation: swap-columns linear both;
+    animation-timeline: scroll();
+    animation-range: entry 0% exit 100%;
+  }
+
+  @keyframes swap-columns {
+    from {
+      grid-template-columns: 1fr 2fr;
+    }
+    to {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  /* Content fades as it swaps */
+  .split-swap__left,
+  .split-swap__right {
+    animation: fade-swap linear both;
+    animation-timeline: scroll();
+    animation-range: entry 0% exit 100%;
+  }
+
+  @keyframes fade-swap {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+}
+
+/* ============================
+   12. DIAGONAL GRID LAYOUTS
+   Browser Support: All modern browsers
+   ============================ */
+
+.diagonal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  transform: rotate(-3deg);
+  transform-origin: center;
+  padding: 4rem 2rem;
+}
+
+.diagonal-grid > * {
+  transform: rotate(3deg);
+  /* Counter-rotate items to keep them straight */
+}
+
+/* Diagonal staggered layout */
+.diagonal-stagger {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.diagonal-stagger > *:nth-child(2n) {
+  transform: translateY(3rem);
+}
+
+.diagonal-stagger > *:nth-child(3n) {
+  transform: translateY(6rem);
+}
+
+/* ============================
+   13. CSS HOUDINI PAINT API
+   Browser Support: Chrome, Edge (limited)
+   ============================ */
+
+/* Custom gradient backgrounds (when Houdini is supported) */
+@supports (background: paint(id)) {
+  .houdini-gradient {
+    background: paint(wobble-gradient);
+    --gradient-angle: 45deg;
+    --gradient-stops: #ff3366, #00ffcc;
+  }
+}
+
+/* Fallback for non-Houdini browsers */
+@supports not (background: paint(id)) {
+  .houdini-gradient {
+    background: linear-gradient(45deg, #ff3366, #00ffcc);
+  }
+}
+
+/* Animated custom properties */
+.houdini-animated {
+  --gradient-angle: 0deg;
+  animation: rotate-gradient 10s linear infinite;
+}
+
+@keyframes rotate-gradient {
+  to {
+    --gradient-angle: 360deg;
+  }
+}
+
+/* ============================
+   14. 3D PERSPECTIVE SCROLLING
+   Browser Support: Good (CSS 3D + scroll-driven animations)
+   ============================ */
+
+.perspective-scene {
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  overflow: hidden;
+}
+
+@supports (animation-timeline: scroll()) {
+  .perspective-layer {
+    transform-style: preserve-3d;
+    animation: parallax-depth linear both;
+    animation-timeline: scroll();
+  }
+
+  .perspective-layer-1 {
+    transform: translateZ(0px);
+    animation-name: parallax-1;
+  }
+
+  .perspective-layer-2 {
+    transform: translateZ(-100px) scale(1.1);
+    animation-name: parallax-2;
+  }
+
+  .perspective-layer-3 {
+    transform: translateZ(-200px) scale(1.2);
+    animation-name: parallax-3;
+  }
+
+  @keyframes parallax-1 {
+    to {
+      transform: translateZ(-100px) scale(1.05);
+    }
+  }
+
+  @keyframes parallax-2 {
+    to {
+      transform: translateZ(-200px) scale(1.15);
+    }
+  }
+
+  @keyframes parallax-3 {
+    to {
+      transform: translateZ(-300px) scale(1.25);
+    }
+  }
+}
+
+/* 3D card flip */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-3d:hover {
+  transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
+}
+
+/* ============================
+   15. MORPHING BLOB SHAPES
+   Browser Support: All modern browsers
+   ============================ */
+
+.blob {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: morph 8s ease-in-out infinite;
+  filter: blur(0px);
+}
+
+@keyframes morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 50% 50% 25% 75% / 30% 55% 45% 70%;
+  }
+  75% {
+    border-radius: 75% 25% 50% 50% / 60% 45% 55% 40%;
+  }
+}
+
+/* Animated blob with rotation */
+.blob-rotate {
+  animation: morph 8s ease-in-out infinite, blob-spin 20s linear infinite;
+}
+
+@keyframes blob-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Small blob decorations */
+.blob-small {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  opacity: 0.3;
+  filter: blur(40px);
+}
+
+/* Blob background */
+.blob-background {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+/* ============================
+   UTILITY CLASSES FOR BLEEDING EDGE FEATURES
+   ============================ */
+
+/* Smooth all animations */
+.smooth-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hardware acceleration */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Prevent layout shift */
+.no-layout-shift {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* Intersection observer targets */
+.observe-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.observe-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

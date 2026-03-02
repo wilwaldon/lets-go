@@ -1,0 +1,550 @@
+/* ============================
+   Container Queries (2025 - Baseline)
+   Component-based responsive design
+   ============================ */
+
+/* ============================
+   Container Definitions
+   ============================ */
+
+/* Main content areas become containers */
+.bento-grid,
+.testimonial-grid,
+.grid,
+.split-layout,
+.feature-container,
+.card-container {
+  container-type: inline-size;
+}
+
+/* Section containers */
+.section {
+  container-type: inline-size;
+  container-name: section;
+}
+
+/* ============================
+   Bento Grid — Container Responsive
+   ============================ */
+
+/* Bento items adapt to their grid cell size */
+@container (min-width: 600px) {
+  .bento-item {
+    padding: 3rem;
+  }
+
+  .bento-item__title {
+    font-size: clamp(1.75rem, 5cqi, 2.75rem);
+    margin-bottom: 1rem;
+  }
+
+  .bento-item__text {
+    display: block;
+    font-size: clamp(1rem, 2.5cqi, 1.125rem);
+    line-height: 1.7;
+  }
+}
+
+@container (min-width: 400px) and (max-width: 599px) {
+  .bento-item {
+    padding: 2rem;
+  }
+
+  .bento-item__title {
+    font-size: clamp(1.5rem, 6cqi, 2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .bento-item__text {
+    display: block;
+    font-size: 1rem;
+  }
+}
+
+@container (max-width: 399px) {
+  .bento-item {
+    padding: 1.5rem;
+  }
+
+  .bento-item__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .bento-item__text {
+    font-size: 0.9375rem;
+    /* Could hide on very small containers */
+  }
+}
+
+/* Featured bento item (spans multiple cells) gets extra treatment */
+@container (min-width: 800px) {
+  .bento-item:first-child .bento-item__title {
+    font-size: clamp(2.5rem, 6cqi, 4rem);
+    line-height: 1;
+  }
+
+  .bento-item:first-child .bento-item__text {
+    font-size: clamp(1.125rem, 2.5cqi, 1.375rem);
+    max-width: 40ch;
+  }
+}
+
+/* ============================
+   Testimonials — Container Responsive
+   ============================ */
+
+/* Testimonials adapt to their container width */
+@container (min-width: 500px) {
+  .testimonial {
+    padding: 2.5rem;
+  }
+
+  .testimonial__text {
+    font-size: clamp(1.125rem, 3cqi, 1.375rem);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial__author {
+    font-size: 1rem;
+  }
+}
+
+@container (min-width: 300px) and (max-width: 499px) {
+  .testimonial {
+    padding: 2rem;
+  }
+
+  .testimonial__text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial__author {
+    font-size: 0.875rem;
+  }
+}
+
+@container (max-width: 299px) {
+  .testimonial {
+    padding: 1.5rem;
+  }
+
+  .testimonial__text {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .testimonial__author {
+    font-size: 0.8125rem;
+  }
+}
+
+/* ============================
+   Generic Cards — Container Responsive
+   ============================ */
+
+/* Cards can be placed anywhere and will adapt */
+@container (min-width: 500px) {
+  .card {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  .card__image {
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+  }
+
+  .card__body {
+    flex: 1;
+  }
+
+  .card__title {
+    font-size: clamp(1.5rem, 4cqi, 2rem);
+  }
+}
+
+@container (max-width: 499px) {
+  .card {
+    display: block;
+  }
+
+  .card__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+  }
+
+  .card__body {
+    width: 100%;
+  }
+
+  .card__title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================
+   Split Layout — Container Responsive
+   ============================ */
+
+/* Split layout can adapt based on available space */
+@container (min-width: 900px) {
+  .split-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .split-layout__content {
+    max-width: none;
+  }
+}
+
+@container (min-width: 600px) and (max-width: 899px) {
+  .split-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .split-layout__content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@container (max-width: 599px) {
+  .split-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .split-layout__content {
+    max-width: 100%;
+  }
+}
+
+/* ============================
+   Feature Grid — Container Responsive
+   ============================ */
+
+.feature-grid {
+  container-type: inline-size;
+  display: grid;
+  gap: 2rem;
+}
+
+/* 3-column layout in wide containers */
+@container (min-width: 900px) {
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 2-column layout in medium containers */
+@container (min-width: 600px) and (max-width: 899px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 1-column layout in narrow containers */
+@container (max-width: 599px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================
+   Service Cards — Container Responsive
+   ============================ */
+
+.service-card {
+  container-type: inline-size;
+  padding: 2rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Large service card (wide container) */
+@container (min-width: 400px) {
+  .service-card__icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-card__title {
+    font-size: clamp(1.5rem, 5cqi, 2rem);
+    margin-bottom: 1rem;
+  }
+
+  .service-card__description {
+    display: block;
+    font-size: clamp(1rem, 2.5cqi, 1.125rem);
+    line-height: 1.7;
+  }
+
+  .service-card__link {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+}
+
+/* Compact service card (narrow container) */
+@container (max-width: 399px) {
+  .service-card__icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+  }
+
+  .service-card__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-card__description {
+    display: block;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .service-card__link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* ============================
+   Team Member Cards — Container Responsive
+   ============================ */
+
+.team-card {
+  container-type: inline-size;
+}
+
+/* Horizontal layout in wide containers */
+@container (min-width: 500px) {
+  .team-card {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .team-card__photo {
+    width: 150px;
+    height: 150px;
+    border-radius: var(--border-radius);
+  }
+
+  .team-card__name {
+    font-size: clamp(1.5rem, 5cqi, 2rem);
+  }
+
+  .team-card__role {
+    font-size: clamp(1rem, 3cqi, 1.125rem);
+  }
+}
+
+/* Vertical layout in narrow containers */
+@container (max-width: 499px) {
+  .team-card {
+    display: block;
+    text-align: center;
+  }
+
+  .team-card__photo {
+    width: 120px;
+    height: 120px;
+    border-radius: var(--border-radius);
+    margin: 0 auto 1.5rem;
+  }
+
+  .team-card__name {
+    font-size: 1.5rem;
+  }
+
+  .team-card__role {
+    font-size: 1rem;
+  }
+}
+
+/* ============================
+   Menu Items — Container Responsive
+   ============================ */
+
+.menu-item {
+  container-type: inline-size;
+}
+
+/* Detailed layout for wide containers */
+@container (min-width: 400px) {
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1.5rem 0;
+  }
+
+  .menu-item__content {
+    flex: 1;
+  }
+
+  .menu-item__name {
+    font-size: clamp(1.125rem, 4cqi, 1.5rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-item__description {
+    display: block;
+    font-size: clamp(0.9375rem, 2.5cqi, 1rem);
+    color: var(--color-text-light);
+  }
+
+  .menu-item__price {
+    font-size: clamp(1.125rem, 4cqi, 1.5rem);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+}
+
+/* Compact layout for narrow containers */
+@container (max-width: 399px) {
+  .menu-item {
+    display: block;
+    padding: 1rem 0;
+  }
+
+  .menu-item__name {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .menu-item__description {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-item__price {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+}
+
+/* ============================
+   CTA Blocks — Container Responsive
+   ============================ */
+
+.cta-block {
+  container-type: inline-size;
+  padding: 3rem;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-radius: var(--border-radius-lg);
+}
+
+@container (min-width: 600px) {
+  .cta-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .cta-block__content {
+    flex: 1;
+  }
+
+  .cta-block__title {
+    font-size: clamp(1.75rem, 5cqi, 2.5rem);
+  }
+
+  .cta-block__actions {
+    flex-shrink: 0;
+  }
+}
+
+@container (max-width: 599px) {
+  .cta-block {
+    text-align: center;
+  }
+
+  .cta-block__title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-block__text {
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-block__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* ============================
+   Fallback for Unsupported Browsers
+   ============================ */
+
+@supports not (container-type: inline-size) {
+  /* Fallback to viewport-based media queries */
+  @media (min-width: 768px) {
+    .card {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .split-layout {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .card,
+    .split-layout {
+      display: block;
+    }
+  }
+}
+
+/* ============================
+   Container Query Units Examples
+   ============================ */
+
+/* Typography scales with container, not viewport */
+.responsive-heading {
+  font-size: clamp(1.5rem, 6cqi, 4rem);
+  line-height: 1.2;
+}
+
+/* Padding scales with container */
+.responsive-padding {
+  padding: clamp(1rem, 5cqi, 3rem);
+}
+
+/* Gap scales with container */
+.responsive-gap {
+  gap: clamp(1rem, 3cqi, 2rem);
+}

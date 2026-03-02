@@ -12,6 +12,12 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" style="position: fixed; top: 0; left: 0; height: 3px; background: var(--color-primary); z-index: 9999; width: 0%; transition: width 0.1s ease;"></div>
+
+  <!-- Blob Background Decorations -->
+  <div class="blob blob-background" style="position: fixed; top: 10%; right: -5%; width: 40%; height: 40%; z-index: -1; opacity: 0.08; pointer-events: none;"></div>
+  <div class="blob-small blob" style="position: fixed; bottom: 20%; left: 5%; z-index: -1; pointer-events: none;"></div>
 
   <!-- Header -->
   <header class="header">
@@ -34,22 +40,22 @@
   </aside>
 
   <main>
-    <!-- Hero — Left-aligned, expansive -->
+    <!-- Hero — Left-aligned, expansive, with text reveal -->
     <section class="hero hero--modern">
       <div class="container">
         <div class="hero__content">
           <span class="hero__tagline scroll-fade" data-bind="hero.tagline"></span>
-          <h1 class="hero__title scroll-fade" data-bind="hero.headline"></h1>
+          <h1 class="hero__title scroll-fade" data-bind="hero.headline" data-reveal="chars"></h1>
           <p class="hero__description scroll-fade" data-bind="hero.subheadline"></p>
           <div class="hero__actions scroll-fade">
-            <a class="btn btn--primary btn--large" data-bind="hero.ctaText" data-bind-href="hero.ctaLink"></a>
-            <a href="page-2.html" class="btn btn--secondary btn--large" data-bind="hero.ctaSecondary"></a>
+            <a class="btn btn--primary btn--large magnetic-button" data-bind="hero.ctaText" data-bind-href="hero.ctaLink"></a>
+            <a href="page-2.html" class="btn btn--secondary btn--large magnetic-button" data-bind="hero.ctaSecondary"></a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Featured Items — Bento Grid Layout -->
+    <!-- Featured Items — Bento Grid Layout with Magnetic + 3D Tilt -->
     <section class="section" data-hide-empty="featured">
       <div class="container">
         <div class="section-header">
@@ -58,13 +64,44 @@
         </div>
         <div class="bento-grid" data-template="featured">
           <template>
-            <div class="bento-item glass-card scroll-fade">
+            <div class="bento-item glass-card scroll-fade magnetic-card" data-tilt>
               <div class="bento-item__body">
                 <h3 class="bento-item__title" data-bind="name"></h3>
                 <p class="bento-item__text" data-bind="description"></p>
               </div>
             </div>
           </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full-Bleed Content Grid Example -->
+    <section class="section clip-diagonal" style="background: var(--color-bg-alt); padding: 6rem 0;">
+      <div class="content-grid" style="max-width: 1400px; margin: 0 auto;">
+        <div class="section-header">
+          <span class="section-header__label">Innovation</span>
+          <h2 class="section-header__title observe-in">Experience the Future</h2>
+          <p class="observe-in" style="max-width: 60ch;">Our cutting-edge approach combines traditional craftsmanship with modern technology to deliver exceptional results.</p>
+        </div>
+
+        <!-- This image breaks out to full width -->
+        <div class="full-bleed observe-in" style="margin: 3rem 0;">
+          <div style="width: 100%; height: 400px; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); border-radius: var(--border-radius);"></div>
+        </div>
+
+        <div class="observe-in" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+          <div class="glass-card" style="padding: 2rem;">
+            <h3 style="margin-bottom: 0.5rem;">Premium Quality</h3>
+            <p style="color: var(--color-text-light);">Every detail matters to us.</p>
+          </div>
+          <div class="glass-card" style="padding: 2rem;">
+            <h3 style="margin-bottom: 0.5rem;">Expert Team</h3>
+            <p style="color: var(--color-text-light);">Years of experience at your service.</p>
+          </div>
+          <div class="glass-card" style="padding: 2rem;">
+            <h3 style="margin-bottom: 0.5rem;">Modern Approach</h3>
+            <p style="color: var(--color-text-light);">Innovation meets tradition.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -78,7 +115,7 @@
         </div>
         <div class="testimonial-grid" data-template="testimonials">
           <template>
-            <div class="testimonial glass-card scroll-fade">
+            <div class="testimonial glass-card scroll-fade" data-tilt>
               <p class="testimonial__text" data-bind="text"></p>
               <p class="testimonial__author" data-bind="name"></p>
             </div>
@@ -156,5 +193,6 @@
   </footer>
 
   <script type="module" src="js/main.js"></script>
+  <script src="js/bleeding-edge.js"></script>
 </body>
 </html>
