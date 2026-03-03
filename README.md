@@ -1,6 +1,6 @@
 # Let's Go!
 
-Generate production-ready local business websites with cutting-edge 2025-2026 design features. Pick a business type, pick a design style, get a complete site in minutes.
+Generate production-ready local business websites. Pick a business type, pick a design style, get a complete site in minutes.
 
 **No frameworks. No build tools.** Just HTML, CSS, and JS with native scroll-driven animations, glassmorphism, bento grids, and View Transitions API.
 
@@ -26,9 +26,9 @@ Claude Code will ask you four questions:
 
 Then it builds everything.
 
-## What's New (2025 Update)
+## What's New 
 
-🚀 **Major upgrade:** Templates now feature cutting-edge 2025-2026 technologies:
+🚀 **Major upgrade:** Templates now feature new styles:
 
 ### Phase 1: Modern Features (Completed)
 - **3 new "Future" styles:** Kinetic, Glass, Brutal
@@ -69,7 +69,7 @@ See `UPGRADE-SUMMARY.md` and `BLEEDING-EDGE-GUIDE.md` for complete details.
 | **Classic Professional** | Conservative, muted, no animations. Law firm.                      |
 | **Material**             | Tonal surfaces, elevation shadows, light heading weights. Google.  |
 
-### Future Styles (2025-2026)
+### Future Styles (2026)
 
 | Style       | Vibe                                                                                                   |
 | ----------- | ------------------------------------------------------------------------------------------------------ |
