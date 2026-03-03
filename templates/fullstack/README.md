@@ -10,6 +10,9 @@ A production-ready restaurant website built with Vite, React, TypeScript, Tailwi
 - **Menu Management**: Dynamic menu with categories and dietary filters
 - **Shopping Cart**: Local storage persistence with real-time updates
 - **Payments**: Stripe and Square integration (swappable)
+- **Error Handling**: React Error Boundaries with graceful recovery
+- **Environment Validation**: Startup validation with helpful error messages
+- **Logging**: Centralized logger with analytics tracking hooks
 - **Responsive**: Mobile-first design that works on all devices
 - **SEO-Friendly**: React Helmet Async for meta tags
 - **Accessible**: WCAG AA compliant components
@@ -94,7 +97,7 @@ src/
 ├── components/
 │   ├── ui/              # 12 reusable UI primitives
 │   ├── layout/          # Header, Footer, PageWrapper, etc.
-│   ├── common/          # Shared business components
+│   ├── common/          # Shared components (ErrorBoundary, LoadingScreen, etc.)
 │   └── auth/            # Authentication forms
 ├── modules/
 │   ├── menu/            # Menu display, cart, ordering
@@ -104,7 +107,10 @@ src/
 ├── config/
 │   ├── site.config.ts   # Business info, hours, social
 │   └── features.config.ts # Module toggles, payment provider
-├── lib/                 # Supabase client
+├── lib/
+│   ├── supabase.ts      # Supabase client
+│   ├── env.ts           # Environment validation
+│   └── logger.ts        # Centralized logging
 ├── hooks/               # Custom React hooks
 ├── types/               # TypeScript type definitions
 ├── App.tsx              # Root app component
@@ -172,6 +178,45 @@ theme: {
   },
 },
 ```
+
+### UI Components
+
+The template includes 12 reusable UI components in `src/components/ui/`:
+
+**Button Component** - Supports composition with the `asChild` prop:
+
+```typescript
+import { Button } from '@/components/ui/Button';
+import { Link } from 'react-router-dom';
+
+// Regular button
+<Button onClick={handleClick}>Click Me</Button>
+
+// Button as Link (composition pattern)
+<Button asChild>
+  <Link to="/menu">View Menu</Link>
+</Button>
+
+// With variants and sizes
+<Button variant="outline" size="lg">Large Outline</Button>
+<Button variant="ghost" isLoading>Loading...</Button>
+```
+
+Available variants: `primary`, `secondary`, `outline`, `ghost`, `destructive`
+Available sizes: `sm`, `md`, `lg`
+
+**Other Components:**
+- `Card`, `CardHeader`, `CardContent`, `CardFooter` - Card layouts
+- `Input`, `Select`, `Textarea` - Form inputs with labels and errors
+- `Modal` - Dialog with backdrop and focus trap
+- `Toast` / `useToast()` - Toast notifications
+- `Badge` - Labels and tags
+- `Spinner` - Loading indicators
+- `Skeleton` - Loading placeholders
+- `Tabs`, `TabList`, `Tab`, `TabPanel` - Tab navigation
+- `Avatar` - User avatars with fallback
+
+All components are fully typed, accessible (WCAG AA), and styled with Tailwind CSS.
 
 ## Database
 
@@ -305,6 +350,126 @@ Modules are self-contained in `src/modules/`:
 
 Future modules (booking, portal) follow the same pattern.
 
+## Error Handling & Logging
+
+### Error Boundaries
+
+The app uses React Error Boundaries to catch rendering errors:
+
+```typescript
+import { ErrorBoundary } from '@/components/common/ErrorBoundary';
+
+<ErrorBoundary>
+  <YourComponent />
+</ErrorBoundary>
+```
+
+Features:
+- Catches all React rendering errors in child components
+- Shows user-friendly error UI with recovery options
+- Displays detailed error messages in development mode
+- Logs errors to centralized logger
+- Provides "Try Again" and "Go Home" actions
+
+The root `App.tsx` is wrapped in an ErrorBoundary to catch all application errors.
+
+### Environment Validation
+
+Environment variables are validated on app startup:
+
+```typescript
+import { env } from '@/lib/env';
+
+// Type-safe access
+const supabaseUrl = env.get('VITE_SUPABASE_URL');
+
+// Check if optional var exists
+if (env.has('VITE_STRIPE_PUBLISHABLE_KEY')) {
+  // Use Stripe
+}
+```
+
+Features:
+- Validates required environment variables on startup
+- Shows helpful error screen in dev mode with fix instructions
+- Validates URL formats
+- Type-safe environment variable access
+- Prevents app from starting with missing configuration
+
+If environment variables are missing, you'll see a helpful error screen:
+
+```
+⚠️ Configuration Error
+
+Missing or invalid environment variables:
+• VITE_SUPABASE_URL is required but not set
+
+To fix this:
+1. Copy .env.example to .env.local
+2. Add your Supabase credentials
+3. Restart the dev server
+```
+
+### Centralized Logging
+
+Use the logger for consistent logging across the app:
+
+```typescript
+import { logger } from '@/lib/logger';
+
+// Log errors with context
+logger.error('Payment failed', error, { userId, orderId });
+
+// Log warnings
+logger.warn('Using deprecated API');
+
+// Track analytics events
+logger.track('button_clicked', { buttonId, page });
+
+// Log performance metrics
+logger.performance('api_call', duration, { endpoint });
+
+// Measure async operations
+const result = await logger.measure('fetchMenu', async () => {
+  return await fetch('/api/menu');
+});
+```
+
+Features:
+- Centralized logging across the entire application
+- Different log levels: error, warn, info, debug
+- Analytics tracking hooks
+- Performance measurement utilities
+- Ready for integration with Sentry, LogRocket, DataDog
+- Global error handlers for unhandled rejections
+
+In production, uncomment the service integration in `src/lib/logger.ts`:
+
+```typescript
+// Example: Sentry integration
+// Sentry.captureException(error, {
+//   level: 'error',
+//   extra: { message, ...context },
+// });
+```
+
+### Loading States
+
+Use the provided loading components for consistent UX:
+
+```typescript
+import { LoadingScreen, LoadingSection, LoadingEmpty } from '@/components/common/LoadingScreen';
+
+// Full-screen loading
+<LoadingScreen message="Loading your order..." />
+
+// Section loading
+<LoadingSection message="Loading menu..." />
+
+// Empty state loading
+<LoadingEmpty message="Loading content..." />
+```
+
 ## Customization
 
 ### Adding a New Page
@@ -357,11 +522,25 @@ colors: {
 2. Check TypeScript: `npm run type-check`
 3. Clear Vite cache: `rm -rf node_modules/.vite`
 
+### Environment Configuration Errors
+
+If you see an environment configuration error on startup:
+
+1. Ensure `.env.local` exists (copy from `.env.example`)
+2. Verify all required variables are set:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+3. Check URL format (must start with `https://`)
+4. Restart the dev server after changes
+
+The environment validator will show exactly which variables are missing or invalid.
+
 ### Supabase Connection Issues
 
 1. Verify `.env.local` has correct URL and anon key
 2. Check Supabase dashboard is accessible
 3. Ensure RLS policies allow your operations
+4. Check browser console for specific error messages
 
 ### Payment Not Working
 
