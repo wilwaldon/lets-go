@@ -55,6 +55,12 @@ Completed a **production-ready full-stack restaurant template** with Vite + Reac
    - Changed `siteConfig.contact.phone` → `siteConfig.business.phone`
    - Page now loads without errors
 
+✅ **Database Migration UUID Error** - Fixed UUID function compatibility
+   - Replaced `uuid_generate_v4()` → `gen_random_uuid()` in all migrations
+   - Removed unnecessary `uuid-ossp` extension
+   - Uses PostgreSQL 13+ built-in function (universal compatibility)
+   - Database reset now works out of the box
+
 ---
 
 ## 📁 Project Location

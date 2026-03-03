@@ -62,27 +62,21 @@ Install the Supabase CLI:
 npm install -g supabase
 ```
 
-Link your project:
+Link your cloud project (find your project ref in your Supabase dashboard URL):
 
 ```bash
 supabase link --project-ref your-project-ref
 ```
 
-Run migrations:
+Run migrations and seed data:
 
 ```bash
-supabase db reset
+supabase db reset --linked
 ```
 
-This creates all tables and applies Row Level Security policies.
+This creates all tables, applies Row Level Security policies, and loads sample menu items into your cloud database.
 
-4. **Seed sample data (optional):**
-
-```bash
-supabase db reset --seed
-```
-
-5. **Start development server:**
+4. **Start development server:**
 
 ```bash
 npm run dev
@@ -227,6 +221,8 @@ Migrations are in `supabase/migrations/`:
 - `20240101000000_core.sql` — Profiles and contact submissions
 - `20240101000001_menu.sql` — Menu categories, items, and orders
 
+All migrations use `gen_random_uuid()` for ID generation (PostgreSQL 13+ built-in function).
+
 To create a new migration:
 
 ```bash
@@ -244,13 +240,15 @@ All tables have RLS enabled. Policies ensure:
 
 ### Seeding Data
 
-Edit `supabase/seed.sql` to add sample menu items, categories, etc.
+The `supabase/seed.sql` file contains 25+ sample menu items for a restaurant.
 
-Run seeds with:
+Seeding happens automatically when you run:
 
 ```bash
-supabase db reset --seed
+supabase db reset --linked
 ```
+
+To modify seed data, edit `supabase/seed.sql` and re-run the reset command
 
 ## Payment Setup
 
@@ -581,6 +579,24 @@ The environment validator will show exactly which variables are missing or inval
 2. Check Supabase dashboard is accessible
 3. Ensure RLS policies allow your operations
 4. Check browser console for specific error messages
+
+### Database Migration Errors
+
+If `supabase db reset --linked` fails:
+
+1. **"function uuid_generate_v4() does not exist"**
+   - This error should not occur - migrations use `gen_random_uuid()` (built-in)
+   - If you see this, ensure you have the latest migration files
+
+2. **"permission denied" errors**
+   - Ensure you're using `--linked` flag for cloud projects
+   - Verify your database password is correct
+   - Check that you have owner permissions on the project
+
+3. **Cannot connect to database**
+   - Verify project ref is correct: `supabase link --project-ref YOUR_REF`
+   - Check your internet connection
+   - Ensure the Supabase project is not paused (free tier)
 
 ### Payment Not Working
 

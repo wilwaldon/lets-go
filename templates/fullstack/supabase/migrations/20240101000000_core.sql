@@ -1,6 +1,3 @@
--- Enable UUID extension
-create extension if not exists "uuid-ossp";
-
 -- Profiles table
 create table public.profiles (
   id uuid references auth.users on delete cascade primary key,
@@ -68,7 +65,7 @@ create policy "Users can insert own profile"
 
 -- Contact submissions table
 create table public.contact_submissions (
-  id uuid default uuid_generate_v4() primary key,
+  id uuid default gen_random_uuid() primary key,
   name text not null,
   email text not null,
   phone text,

@@ -1,6 +1,6 @@
 -- Menu categories table
 create table public.menu_categories (
-  id uuid default uuid_generate_v4() primary key,
+  id uuid default gen_random_uuid() primary key,
   name text not null,
   description text,
   display_order int not null default 0,
@@ -9,7 +9,7 @@ create table public.menu_categories (
 
 -- Menu items table
 create table public.menu_items (
-  id uuid default uuid_generate_v4() primary key,
+  id uuid default gen_random_uuid() primary key,
   category_id uuid references public.menu_categories(id) on delete cascade not null,
   name text not null,
   description text,
@@ -23,7 +23,7 @@ create table public.menu_items (
 
 -- Orders table
 create table public.orders (
-  id uuid default uuid_generate_v4() primary key,
+  id uuid default gen_random_uuid() primary key,
   user_id uuid references auth.users(id) on delete set null,
   guest_email text,
   items jsonb not null,
