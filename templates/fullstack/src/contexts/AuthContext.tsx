@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/Toast';
+import { logger } from '@/lib/logger';
 
 interface AuthContextType {
   user: User | null;
@@ -58,9 +59,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       if (error) throw error;
 
+      logger.track('user_signup', { email });
       showToast('Account created successfully! Please check your email to verify.', 'success');
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Failed to create account';
+      logger.error('Sign up failed', error, { email });
       showToast(message, 'error');
       throw error;
     }
@@ -75,9 +78,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       if (error) throw error;
 
+      logger.track('user_login', { email });
       showToast('Welcome back!', 'success');
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Failed to sign in';
+      logger.error('Sign in failed', error, { email });
       showToast(message, 'error');
       throw error;
     }

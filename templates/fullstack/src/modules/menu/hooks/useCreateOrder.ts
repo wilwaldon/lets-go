@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/hooks/useAuth';
+import { logger } from '@/lib/logger';
 import type { CartItem, OrderItem } from '@/types';
 
 interface CreateOrderParams {
@@ -61,9 +62,19 @@ export function useCreateOrder(): UseCreateOrderReturn {
       if (insertError) throw insertError;
       if (!data) throw new Error('Failed to create order');
 
+      logger.track('order_created', {
+        orderId: data.id,
+        itemCount: items.length,
+        total,
+      });
+
       return data.id;
     } catch (err) {
       const errorObj = err instanceof Error ? err : new Error('Failed to create order');
+      logger.error('Order creation failed', errorObj, {
+        itemCount: items.length,
+        total,
+      });
       setError(errorObj);
       throw errorObj;
     } finally {

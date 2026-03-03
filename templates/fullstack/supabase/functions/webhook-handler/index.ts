@@ -1,9 +1,10 @@
 // Supabase Edge Function for handling payment webhooks
 // This function handles both Stripe and Square webhooks
 
+// deno-lint-ignore-file no-explicit-any
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
-import Stripe from 'https://esm.sh/stripe@14.10.0';
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import Stripe from 'https://esm.sh/stripe@14.10.0?target=deno';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.0?target=deno';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
