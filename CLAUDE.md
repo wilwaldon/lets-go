@@ -92,14 +92,17 @@ Let's Go! supports two project types:
 
 ### Design Styles Available
 
-| Style                | Vibe                     |
-| -------------------- | ------------------------ |
-| Editorial            | Monocle, Cereal magazine |
-| Modern Minimal       | Linear, Stripe           |
-| Bold & Confident     | Ghost, Optimised Lean    |
-| Warm & Approachable  | Neighborhood shop        |
-| Classic Professional | Law firm, advisor        |
-| Material             | Google product page      |
+| Style                | Vibe                                  |
+| -------------------- | ------------------------------------- |
+| Editorial            | Monocle, Cereal magazine              |
+| Modern Minimal       | Linear, Stripe                        |
+| Bold & Confident     | Ghost, Optimised Lean                 |
+| Warm & Approachable  | Neighborhood shop                     |
+| Classic Professional | Law firm, advisor                     |
+| Material             | Google product page                   |
+| Kinetic              | Variable fonts, scroll-reactive       |
+| Glass                | Apple Liquid Glass, translucent       |
+| Brutal               | Neo-brutalism, harsh borders          |
 
 See [docs/STATIC-SITE.md](docs/STATIC-SITE.md) for detailed trait definitions.
 

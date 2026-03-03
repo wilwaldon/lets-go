@@ -10,6 +10,9 @@ The user wants to switch their site to a different design style without starting
 4. **Warm & Approachable** — Rounded corners, warm palette, friendly copy, soft hover shadows
 5. **Classic Professional** — Conservative sizing, muted colors, no animations, text-heavy
 6. **Material** — Tonal surfaces, elevation shadows, 12px card radius, light heading weights
+7. **Kinetic** — Oversized variable fonts, scroll-reactive typography, dynamic scaling
+8. **Glass** — Apple Liquid Glass aesthetic, translucent surfaces, frosted blur effects
+9. **Brutal** — Neo-brutalism, harsh borders, intentional chaos, high contrast
 
 **SHORTCUT CHECK:** The user may have specified the style in their message:
 - "switch to editorial" or "style 1"
@@ -42,17 +45,26 @@ Read the current site's CSS and HTML to determine which style (if any) is curren
 
 6 — Material — Google-inspired. Tonal color surfaces, elevation shadows instead of borders, systematic spacing, light heading weights, filled cards. Feels like a polished Google product page.
 
-Enter a number (1-6):"
+7 — Kinetic — Oversized variable fonts with dynamic weight and width. Scroll-reactive typography that responds to user interaction. Modern and experimental.
+
+8 — Glass — Apple Liquid Glass aesthetic. Translucent surfaces with backdrop blur, frosted glass effects, subtle depth. Premium and refined.
+
+9 — Brutal — Neo-brutalism. Harsh black borders, intentional chaos, grid-breaking layouts, raw HTML energy. Bold and unapologetic.
+
+Enter a number (1-9):"
 
 **Step 3 — Read the style file:**
 
 Once style is chosen, read the complete style CSS from:
 - `templates/static/styles/style-editorial.css` (for style 1)
-- `templates/static/styles/style-modern.css` (for style 2)
+- `templates/static/styles/style-modern-minimal.css` (for style 2)
 - `templates/static/styles/style-bold.css` (for style 3)
 - `templates/static/styles/style-warm.css` (for style 4)
 - `templates/static/styles/style-classic.css` (for style 5)
 - `templates/static/styles/style-material.css` (for style 6)
+- `templates/static/styles/style-kinetic.css` (for style 7)
+- `templates/static/styles/style-glass.css` (for style 8)
+- `templates/static/styles/style-brutal.css` (for style 9)
 
 The style file contains:
 1. `:root` block with CSS variable overrides (colors, fonts, spacing)

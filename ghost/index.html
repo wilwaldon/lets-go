@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home — {{business.name}}</title>
+  <meta name="description" content="">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" style="position: fixed; top: 0; left: 0; height: 3px; background: var(--color-primary); z-index: 9999; width: 0%; transition: width 0.1s ease;"></div>
+
+  <!-- Blob Background Decorations -->
+  <div class="blob blob-background" style="position: fixed; top: 10%; right: -5%; width: 40%; height: 40%; z-index: -1; opacity: 0.08; pointer-events: none;"></div>
+  <div class="blob-small blob" style="position: fixed; bottom: 20%; left: 5%; z-index: -1; pointer-events: none;"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" data-bind="business.name"></a>
+      <nav class="header__nav" data-nav aria-label="Main navigation"></nav>
+      <a href="contact.html" class="btn btn--primary header__cta">Contact Us</a>
+      <button class="header__hamburger" data-hamburger aria-label="Open menu" aria-expanded="false">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-backdrop" data-mobile-backdrop></div>
+  <aside class="mobile-menu" data-mobile-menu aria-label="Mobile navigation">
+    <button class="mobile-menu__close" data-mobile-close aria-label="Close menu">✕</button>
+    <nav class="mobile-menu__nav" data-nav></nav>
+    <a href="contact.html" class="btn btn--primary btn--full mobile-menu__cta">Contact Us</a>
+  </aside>
+
+  <main>
+    <!-- Hero — Left-aligned, expansive, with text reveal -->
+    <section class="hero hero--modern">
+      <div class="container">
+        <div class="hero__content">
+          <span class="hero__tagline scroll-fade" data-bind="hero.tagline"></span>
+          <h1 class="hero__title scroll-fade" data-bind="hero.headline" data-reveal="chars"></h1>
+          <p class="hero__description scroll-fade" data-bind="hero.subheadline"></p>
+          <div class="hero__actions scroll-fade">
+            <a class="btn btn--primary btn--large magnetic-button" data-bind="hero.ctaText" data-bind-href="hero.ctaLink"></a>
+            <a href="page-2.html" class="btn btn--secondary btn--large magnetic-button" data-bind="hero.ctaSecondary"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Items — Bento Grid Layout with Magnetic + 3D Tilt -->
+    <section class="section" data-hide-empty="featured">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__label">What We Offer</span>
+          <h2 class="section-header__title">Featured</h2>
+        </div>
+        <div class="bento-grid" data-template="featured">
+          <template>
+            <div class="bento-item glass-card scroll-fade magnetic-card" data-tilt>
+              <div class="bento-item__body">
+                <h3 class="bento-item__title" data-bind="name"></h3>
+                <p class="bento-item__text" data-bind="description"></p>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full-Bleed Content Grid Example -->
+    <section class="section clip-diagonal" style="background: var(--color-bg-alt); padding: 6rem 0;">
+      <div class="content-grid" style="max-width: 1400px; margin: 0 auto;">
+        <div class="section-header">
+          <span class="section-header__label">Innovation</span>
+          <h2 class="section-header__title observe-in">Experience the Future</h2>
+          <p class="observe-in" style="max-width: 60ch;">Our cutting-edge approach combines traditional craftsmanship with modern technology to deliver exceptional results.</p>
+        </div>
+
+        <!-- This image breaks out to full width -->
+        <div class="full-bleed observe-in" style="margin: 3rem 0;">
+          <div style="width: 100%; height: 400px; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); border-radius: var(--border-radius);"></div>
+        </div>
+
+        <div class="observe-in" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+          <div class="glass-card" style="padding: 2rem;">
+            <h3 style="margin-bottom: 0.5rem;">Premium Quality</h3>
+            <p style="color: var(--color-text-light);">Every detail matters to us.</p>
+          </div>
+          <div class="glass-card" style="padding: 2rem;">
+            <h3 style="margin-bottom: 0.5rem;">Expert Team</h3>
+            <p style="color: var(--color-text-light);">Years of experience at your service.</p>
+          </div>
+          <div class="glass-card" style="padding: 2rem;">
+            <h3 style="margin-bottom: 0.5rem;">Modern Approach</h3>
+            <p style="color: var(--color-text-light);">Innovation meets tradition.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials — Staggered layout, not uniform grid -->
+    <section class="section section--alt" data-hide-empty="testimonials">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <span class="section-header__label">Testimonials</span>
+          <h2 class="section-header__title">What Our Customers Say</h2>
+        </div>
+        <div class="testimonial-grid" data-template="testimonials">
+          <template>
+            <div class="testimonial glass-card scroll-fade" data-tilt>
+              <p class="testimonial__text" data-bind="text"></p>
+              <p class="testimonial__author" data-bind="name"></p>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hours & Location — Split layout with emphasis -->
+    <section class="section">
+      <div class="container">
+        <div class="split-layout">
+          <div class="split-layout__content scroll-fade">
+            <div class="section-header">
+              <span class="section-header__label">Visit Us</span>
+              <h2 class="section-header__title">Hours & Location</h2>
+            </div>
+            <table class="hours-table" data-hours>
+              <tbody></tbody>
+            </table>
+            <div class="mt-lg">
+              <p><strong data-bind="business.address.street"></strong></p>
+              <p data-bind="business.address.city"></p>
+              <p class="mt-sm"><a data-bind="business.phone" data-bind-href="business.phoneLink"></a></p>
+            </div>
+          </div>
+          <div class="split-layout__media scroll-fade">
+            <div class="map-embed glass-card">
+              <p class="text-center text-light" style="padding: 2rem;">Map embed — replace with Google Maps iframe</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner — Statement section -->
+    <section class="cta-banner">
+      <div class="container">
+        <div class="cta-banner__content scroll-fade">
+          <h2 class="cta-banner__title">Ready to Get Started?</h2>
+          <p class="cta-banner__text">We'd love to hear from you. Reach out today.</p>
+          <a href="contact.html" class="btn btn--primary btn--large">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <strong data-bind="business.name" class="footer__brand"></strong>
+          <p class="footer__description" data-bind="business.description"></p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Quick Links</h4>
+          <nav class="footer__links" data-nav></nav>
+        </div>
+        <div>
+          <h4 class="footer__heading">Contact</h4>
+          <p class="footer__contact-item" data-bind="business.address.street"></p>
+          <p class="footer__contact-item">
+            <span data-bind="business.address.city"></span>, <span data-bind="business.address.state"></span> <span data-bind="business.address.zip"></span>
+          </p>
+          <p class="footer__contact-item" data-bind="business.phone"></p>
+          <p class="footer__contact-item" data-bind="business.email"></p>
+          <div class="footer__social" data-social></div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span data-year></span> <span data-bind="business.name"></span>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script src="js/bleeding-edge.js"></script>
+</body>
+</html>

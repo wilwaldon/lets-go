@@ -56,7 +56,10 @@ const questions = [
       { title: 'Bold & Confident (Ghost, Optimised Lean)', value: 'bold' },
       { title: 'Warm & Approachable (Neighborhood shop)', value: 'warm' },
       { title: 'Classic Professional (Law firm, advisor)', value: 'classic' },
-      { title: 'Material (Google product page)', value: 'material' }
+      { title: 'Material (Google product page)', value: 'material' },
+      { title: 'Kinetic (Variable fonts, scroll-reactive)', value: 'kinetic' },
+      { title: 'Glass (Apple Liquid Glass, translucent)', value: 'glass' },
+      { title: 'Brutal (Neo-brutalism, harsh borders)', value: 'brutal' }
     ],
     initial: 0
   },
@@ -161,6 +164,93 @@ async function generateStaticSite(answers) {
   }
 }
 
+async function generateFullStackSite(answers) {
+  const { businessType, businessName, projectName } = answers;
+
+  const spinner = ora('Generating your full-stack site...').start();
+
+  try {
+    // Step 1: Create project directory
+    spinner.text = 'Creating project directory...';
+    fs.mkdirSync(projectName, { recursive: true });
+
+    // Step 2: Copy full-stack template
+    spinner.text = 'Copying full-stack template...';
+    const templatesDir = path.join(__dirname, '..', 'templates', 'fullstack');
+    copyDirectory(templatesDir, projectName);
+
+    // Step 3: Update site.config.ts with business name
+    spinner.text = 'Configuring site settings...';
+    const siteConfigPath = path.join(projectName, 'src', 'config', 'site.config.ts');
+    let siteConfig = fs.readFileSync(siteConfigPath, 'utf-8');
+    siteConfig = siteConfig.replace("name: 'The Local Kitchen'", `name: '${businessName}'`);
+    fs.writeFileSync(siteConfigPath, siteConfig);
+
+    // Step 4: Update package.json name
+    spinner.text = 'Updating package.json...';
+    const packageJsonPath = path.join(projectName, 'package.json');
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+    packageJson.name = projectName.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+
+    // Step 5: Update index.html title
+    spinner.text = 'Updating HTML title...';
+    const indexHtmlPath = path.join(projectName, 'index.html');
+    let indexHtml = fs.readFileSync(indexHtmlPath, 'utf-8');
+    indexHtml = indexHtml.replace("Let's Go! Restaurant", businessName);
+    fs.writeFileSync(indexHtmlPath, indexHtml);
+
+    // Step 6: Update favicon
+    spinner.text = 'Generating favicon...';
+    const initial = businessName.charAt(0).toUpperCase();
+    const faviconPath = path.join(projectName, 'public', 'favicon.svg');
+    let favicon = fs.readFileSync(faviconPath, 'utf-8');
+    favicon = favicon.replace('>L<', `>${initial}<`);
+    fs.writeFileSync(faviconPath, favicon);
+
+    // Step 7: Initialize git
+    spinner.text = 'Initializing git repository...';
+    const { execSync } = await import('child_process');
+    execSync('git init', { cwd: projectName, stdio: 'ignore' });
+    execSync('git add .', { cwd: projectName, stdio: 'ignore' });
+    execSync('git commit -m "Initial commit: Let\'s Go! full-stack site for ' + businessName + '"', {
+      cwd: projectName,
+      stdio: 'ignore'
+    });
+
+    spinner.succeed(chalk.green('✓ Full-stack site generated successfully!'));
+
+    // Success message
+    console.log('');
+    console.log(chalk.bold.cyan('Your full-stack site is ready!'));
+    console.log('');
+    console.log('Next steps:');
+    console.log('');
+    console.log(chalk.dim('  1.') + ' cd ' + chalk.cyan(projectName));
+    console.log(chalk.dim('  2.') + ' Copy ' + chalk.cyan('.env.example') + ' to ' + chalk.cyan('.env.local'));
+    console.log(chalk.dim('  3.') + ' Add your Supabase credentials to ' + chalk.cyan('.env.local'));
+    console.log(chalk.dim('  4.') + ' npm install');
+    console.log(chalk.dim('  5.') + ' supabase db reset ' + chalk.dim('(runs migrations)'));
+    console.log(chalk.dim('  6.') + ' npm run dev');
+    console.log('');
+    console.log('To customize:');
+    console.log(chalk.dim('  •') + ' Edit ' + chalk.cyan('src/config/site.config.ts') + ' for business info');
+    console.log(chalk.dim('  •') + ' Edit ' + chalk.cyan('src/config/features.config.ts') + ' to enable/disable modules');
+    console.log(chalk.dim('  •') + ' Edit ' + chalk.cyan('tailwind.config.ts') + ' for colors and design tokens');
+    console.log(chalk.dim('  •') + ' See ' + chalk.cyan('README.md') + ' for full documentation');
+    console.log('');
+    console.log(chalk.yellow('Note:') + ' You need a Supabase account to use database features.');
+    console.log(chalk.dim('      Sign up at ') + chalk.cyan('https://supabase.com'));
+    console.log('');
+
+  } catch (error) {
+    spinner.fail(chalk.red('✗ Generation failed'));
+    console.error('');
+    console.error(chalk.red('Error:'), error.message);
+    process.exit(1);
+  }
+}
+
 function copyDirectory(src, dest) {
   // Create destination directory
   fs.mkdirSync(dest, { recursive: true });
@@ -204,10 +294,7 @@ async function main() {
   if (answers.stack === 'static') {
     await generateStaticSite(answers);
   } else {
-    console.log('');
-    console.log(chalk.yellow('Full-stack generation not yet implemented.'));
-    console.log(chalk.dim('For now, use the static site option and customize as needed.'));
-    process.exit(1);
+    await generateFullStackSite(answers);
   }
 }
 

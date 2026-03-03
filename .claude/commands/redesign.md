@@ -6,7 +6,7 @@ The user wants to improve the design of their existing site.
 
 The user may have specified what to fix:
 
-- "/redesign style-name" or "/redesign 1-6" → Run `/switch-style` with that style
+- "/redesign style-name" or "/redesign 1-9" → Run `/switch-style` with that style
 - "/redesign layout" → Run `/redesign-layout`
 - "/redesign typography" → Run `/redesign-typography`
 - "/redesign animations" → Run `/redesign-animations`

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — {{business.name}}</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" data-bind="business.name"></a>
+      <nav class="header__nav" data-nav aria-label="Main navigation"></nav>
+      <a href="contact.html" class="btn btn--primary header__cta">Contact Us</a>
+      <button class="header__hamburger" data-hamburger aria-label="Open menu" aria-expanded="false">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-backdrop" data-mobile-backdrop></div>
+  <aside class="mobile-menu" data-mobile-menu aria-label="Mobile navigation">
+    <button class="mobile-menu__close" data-mobile-close aria-label="Close menu">✕</button>
+    <nav class="mobile-menu__nav" data-nav></nav>
+    <a href="contact.html" class="btn btn--primary btn--full mobile-menu__cta">Contact Us</a>
+  </aside>
+
+  <main>
+    <div class="error-page">
+      <p class="error-page__code">404</p>
+      <h1 class="error-page__title">Page not found</h1>
+      <p class="error-page__text">The page you're looking for doesn't exist or has been moved.</p>
+      <a href="index.html" class="btn btn--primary btn--large">Back to Home</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <strong data-bind="business.name" style="color: #fff; font-size: 1.125rem;"></strong>
+          <p class="footer__description" data-bind="business.description"></p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <nav class="footer__links" data-nav></nav>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p class="footer__contact-item" data-bind="business.address.street"></p>
+          <p class="footer__contact-item">
+            <span data-bind="business.address.city"></span>, <span data-bind="business.address.state"></span> <span data-bind="business.address.zip"></span>
+          </p>
+          <p class="footer__contact-item" data-bind="business.phone"></p>
+          <p class="footer__contact-item" data-bind="business.email"></p>
+          <div class="footer__social" data-social></div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span data-year></span> <span data-bind="business.name"></span>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

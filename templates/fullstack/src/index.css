@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: theme('colors.orange.500');
+    --color-secondary: theme('colors.slate.800');
+  }
+
+  * {
+    @apply border-secondary-200;
+  }
+
+  body {
+    @apply bg-white text-secondary-900 antialiased;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus visible styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-600;
+  }
+}
+
+@layer utilities {
+  /* Custom utility for text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Custom utility for line clamping */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
