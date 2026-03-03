@@ -1,36 +1,27 @@
-import React from 'react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { Section } from '@/components/layout/Section';
 import { Container } from '@/components/layout/Container';
+import { HeroSection } from '@/components/common/HeroSection';
 import { ContactForm } from '@/components/common/ContactForm';
 import { BusinessHours } from '@/components/common/BusinessHours';
 import { MapEmbed } from '@/components/common/MapEmbed';
 import { SocialLinks } from '@/components/common/SocialLinks';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { siteConfig } from '@/config/site.config';
+import { getHeroImage } from '@/lib/heroImages';
 
 export function ContactPage() {
   return (
     <PageWrapper title="Contact" description="Get in touch with us">
       {/* Hero Section */}
-      <Section spacing="tight" className="pt-24">
-        <Container>
-          <div className="text-center mb-8">
-            <h1
-              className="text-4xl md:text-5xl font-bold text-secondary-900 mb-4"
-              style={{ letterSpacing: '-0.02em' }}
-            >
-              Contact Us
-            </h1>
-            <p
-              className="text-lg text-secondary-600 max-w-2xl mx-auto"
-              style={{ lineHeight: '1.7' }}
-            >
-              Have a question or want to make a reservation? We'd love to hear from you.
-            </p>
-          </div>
-        </Container>
-      </Section>
+      <HeroSection
+        headline="Contact Us"
+        description="Have a question or want to make a reservation? We'd love to hear from you."
+        ctaText="Call Us Now"
+        ctaLink={`tel:${siteConfig.business.phone}`}
+        backgroundImage={getHeroImage('contact') || undefined}
+        align="center"
+      />
 
       {/* Contact Information & Form */}
       <Section>

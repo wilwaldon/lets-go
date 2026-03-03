@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export type AvatarSize = 'sm' | 'md' | 'lg' | 'xl';
 export type StatusDot = 'online' | 'offline' | 'busy' | null;

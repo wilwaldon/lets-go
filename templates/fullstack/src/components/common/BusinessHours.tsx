@@ -1,9 +1,8 @@
-import React from 'react';
 import { Clock } from 'lucide-react';
 import { siteConfig } from '@/config/site.config';
 
 export function BusinessHours() {
-  const today = new Date().toLocaleDateString('en-US', { weekday: 'lowercase' });
+  const today = new Date().toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
 
   return (
     <div className="bg-white rounded-lg border border-secondary-200 p-6">

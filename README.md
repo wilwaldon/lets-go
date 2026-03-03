@@ -155,6 +155,34 @@ your-site/
 - **SEO ready** — Sitemap, robots.txt, meta tags, semantic HTML
 - **Zero dependencies** — No npm, no build step, no frameworks
 - **Progressive enhancement** — Modern features with graceful fallbacks
+- **Auto hero images** — Drop images in `/images/` folder and they automatically appear with text overlays
+
+### Hero Background Images
+
+Both static and full-stack templates support automatic hero background images. Just add images to the `/images/` folder (or `/public/images/` for full-stack) and they'll automatically appear on pages!
+
+**How it works:**
+- Name images using the pattern: `hero-{pageName}.{ext}`
+- Supported formats: `.webp`, `.avif`, `.jpg`, `.jpeg`, `.png`
+- Automatic features: 80% dark overlay, white text, responsive design
+- No code changes needed — completely automatic!
+
+**Examples:**
+```
+images/
+├── hero-home.jpg      # Home page background
+├── hero-menu.webp     # Menu page background
+├── hero-about.jpg     # About page background
+└── hero-contact.jpg   # Contact page background
+```
+
+**Best practices:**
+- Use 1920x800px minimum, 21:9 or 16:9 aspect ratio
+- Keep files under 500KB (use [TinyJPG](https://tinyjpg.com) or [Squoosh](https://squoosh.app))
+- Choose images with good contrast for text overlay
+- Add both `.webp` and `.jpg` for best browser compatibility
+
+See `/images/README.md` in any generated site for detailed documentation.
 
 ## Why These Templates Are Different
 

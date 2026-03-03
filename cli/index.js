@@ -167,6 +167,63 @@ async function generateStaticSite(answers) {
 async function generateFullStackSite(answers) {
   const { businessType, businessName, projectName } = answers;
 
+  // Ask for Supabase credentials
+  console.log('');
+  console.log(chalk.bold('Supabase Configuration'));
+  console.log(chalk.dim('Get these from: https://app.supabase.com → Your Project → Settings → API'));
+  console.log('');
+
+  const supabaseAnswers = await prompts([
+    {
+      type: 'text',
+      name: 'supabaseUrl',
+      message: 'Supabase Project URL:',
+      validate: value => {
+        if (!value) return 'Supabase URL is required';
+        if (!value.startsWith('https://')) return 'URL must start with https://';
+        if (!value.includes('.supabase.co')) return 'Invalid Supabase URL format';
+        return true;
+      }
+    },
+    {
+      type: 'text',
+      name: 'supabaseAnonKey',
+      message: 'Supabase Anon Key (public):',
+      validate: value => {
+        if (!value) return 'Anon key is required';
+        if (value.length < 100) return 'Key seems too short - make sure you copied the full key';
+        return true;
+      }
+    },
+    {
+      type: 'confirm',
+      name: 'addStripe',
+      message: 'Do you want to configure Stripe for payments?',
+      initial: false
+    }
+  ]);
+
+  if (!supabaseAnswers.supabaseUrl || !supabaseAnswers.supabaseAnonKey) {
+    console.log('');
+    console.log(chalk.red('Supabase credentials are required for full-stack setup.'));
+    process.exit(1);
+  }
+
+  let stripeKey = '';
+  if (supabaseAnswers.addStripe) {
+    const stripeAnswer = await prompts({
+      type: 'text',
+      name: 'stripeKey',
+      message: 'Stripe Publishable Key (starts with pk_):',
+      validate: value => {
+        if (!value) return true; // Optional
+        if (!value.startsWith('pk_')) return 'Stripe key must start with pk_';
+        return true;
+      }
+    });
+    stripeKey = stripeAnswer.stripeKey || '';
+  }
+
   const spinner = ora('Generating your full-stack site...').start();
 
   try {
@@ -208,7 +265,24 @@ async function generateFullStackSite(answers) {
     favicon = favicon.replace('>L<', `>${initial}<`);
     fs.writeFileSync(faviconPath, favicon);
 
-    // Step 7: Initialize git
+    // Step 7: Create .env.local with credentials
+    spinner.text = 'Creating environment configuration...';
+    const envPath = path.join(projectName, '.env.local');
+    let envContent = `# Supabase Configuration
+VITE_SUPABASE_URL=${supabaseAnswers.supabaseUrl}
+VITE_SUPABASE_ANON_KEY=${supabaseAnswers.supabaseAnonKey}
+`;
+
+    if (stripeKey) {
+      envContent += `
+# Stripe Configuration (optional)
+VITE_STRIPE_PUBLISHABLE_KEY=${stripeKey}
+`;
+    }
+
+    fs.writeFileSync(envPath, envContent);
+
+    // Step 8: Initialize git
     spinner.text = 'Initializing git repository...';
     const { execSync } = await import('child_process');
     execSync('git init', { cwd: projectName, stdio: 'ignore' });
@@ -224,23 +298,25 @@ async function generateFullStackSite(answers) {
     console.log('');
     console.log(chalk.bold.cyan('Your full-stack site is ready!'));
     console.log('');
+    console.log(chalk.green('✓') + ' Supabase configured automatically');
+    if (stripeKey) {
+      console.log(chalk.green('✓') + ' Stripe configured');
+    }
+    console.log('');
     console.log('Next steps:');
     console.log('');
     console.log(chalk.dim('  1.') + ' cd ' + chalk.cyan(projectName));
-    console.log(chalk.dim('  2.') + ' Copy ' + chalk.cyan('.env.example') + ' to ' + chalk.cyan('.env.local'));
-    console.log(chalk.dim('  3.') + ' Add your Supabase credentials to ' + chalk.cyan('.env.local'));
-    console.log(chalk.dim('  4.') + ' npm install');
-    console.log(chalk.dim('  5.') + ' supabase db reset ' + chalk.dim('(runs migrations)'));
-    console.log(chalk.dim('  6.') + ' npm run dev');
+    console.log(chalk.dim('  2.') + ' npm install');
+    console.log(chalk.dim('  3.') + ' Link to Supabase: ' + chalk.cyan('supabase link --project-ref YOUR_REF'));
+    console.log(chalk.dim('  4.') + ' Run migrations: ' + chalk.cyan('supabase db reset'));
+    console.log(chalk.dim('  5.') + ' Start dev server: ' + chalk.cyan('npm run dev'));
     console.log('');
     console.log('To customize:');
     console.log(chalk.dim('  •') + ' Edit ' + chalk.cyan('src/config/site.config.ts') + ' for business info');
     console.log(chalk.dim('  •') + ' Edit ' + chalk.cyan('src/config/features.config.ts') + ' to enable/disable modules');
     console.log(chalk.dim('  •') + ' Edit ' + chalk.cyan('tailwind.config.ts') + ' for colors and design tokens');
+    console.log(chalk.dim('  •') + ' Update ' + chalk.cyan('.env.local') + ' to change API keys');
     console.log(chalk.dim('  •') + ' See ' + chalk.cyan('README.md') + ' for full documentation');
-    console.log('');
-    console.log(chalk.yellow('Note:') + ' You need a Supabase account to use database features.');
-    console.log(chalk.dim('      Sign up at ') + chalk.cyan('https://supabase.com'));
     console.log('');
 
   } catch (error) {

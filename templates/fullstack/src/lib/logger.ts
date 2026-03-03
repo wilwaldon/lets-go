@@ -13,8 +13,6 @@
  * - DataDog for monitoring
  */
 
-type LogLevel = 'debug' | 'info' | 'warn' | 'error';
-
 interface LogContext {
   [key: string]: unknown;
 }
@@ -114,40 +112,6 @@ class Logger {
       const duration = performance.now() - start;
       this.error(`${label} failed after ${duration}ms`, error, context);
       throw error;
-    }
-  }
-
-  /**
-   * Send log to external API (template for custom backend)
-   */
-  private async sendToApi(
-    level: LogLevel,
-    message: string,
-    error?: Error | unknown,
-    context?: LogContext
-  ): Promise<void> {
-    try {
-      // TODO: Implement your logging backend
-      // await fetch('/api/logs', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({
-      //     level,
-      //     message,
-      //     error: error instanceof Error ? {
-      //       message: error.message,
-      //       stack: error.stack,
-      //       name: error.name,
-      //     } : error,
-      //     context,
-      //     timestamp: new Date().toISOString(),
-      //     userAgent: navigator.userAgent,
-      //     url: window.location.href,
-      //   }),
-      // });
-    } catch (err) {
-      // Silently fail - don't want logging to crash the app
-      console.error('Failed to send log to API:', err);
     }
   }
 }

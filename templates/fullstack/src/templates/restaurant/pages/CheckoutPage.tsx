@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { Section } from '@/components/layout/Section';
@@ -13,7 +13,7 @@ import { useToast } from '@/components/ui/Toast';
 
 export function CheckoutPage() {
   const navigate = useNavigate();
-  const { cart, subtotal, tax, total, clearCart } = useCart();
+  const { cart, subtotal, tax, total } = useCart();
   const { createOrder, isLoading: isCreatingOrder } = useCreateOrder();
   const { user } = useAuth();
   const { showToast } = useToast();
@@ -21,7 +21,7 @@ export function CheckoutPage() {
   const [email, setEmail] = useState(user?.email || '');
   const [emailError, setEmailError] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (cart.length === 0) {
       navigate('/menu');
     }
@@ -60,7 +60,7 @@ export function CheckoutPage() {
 
   return (
     <PageWrapper title="Checkout" description="Complete your order">
-      <Section spacing="tight" className="pt-24">
+      <Section spacing="tight" className="!pt-32">
         <Container size="narrow">
           <h1
             className="text-3xl md:text-4xl font-bold text-secondary-900 mb-8"

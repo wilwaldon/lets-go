@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { Section } from '@/components/layout/Section';
 import { Container } from '@/components/layout/Container';
+import { HeroSection } from '@/components/common/HeroSection';
 import { useMenu } from '@/modules/menu/hooks/useMenu';
 import { useCart } from '@/modules/menu/hooks/useCart';
 import { MenuDisplay } from '@/modules/menu/components/MenuDisplay';
@@ -9,10 +10,11 @@ import { DietaryFilter } from '@/modules/menu/components/DietaryFilter';
 import { Cart } from '@/modules/menu/components/Cart';
 import { useToast } from '@/components/ui/Toast';
 import { useNavigate } from 'react-router-dom';
+import { getHeroImage } from '@/lib/heroImages';
 
 export function MenuPage() {
   const { categories, isLoading, error } = useMenu();
-  const { cart, addItem, updateQuantity, removeItem, clearCart, subtotal, tax, total, itemCount } =
+  const { cart, addItem, updateQuantity, removeItem, subtotal, tax, total, itemCount } =
     useCart();
   const { showToast } = useToast();
   const navigate = useNavigate();
@@ -43,23 +45,16 @@ export function MenuPage() {
 
   return (
     <PageWrapper title="Menu" description="Browse our delicious menu">
-      <Section spacing="tight" className="pt-24">
-        <Container>
-          <div className="text-center mb-8">
-            <h1
-              className="text-4xl md:text-5xl font-bold text-secondary-900 mb-4"
-              style={{ letterSpacing: '-0.02em' }}
-            >
-              Our Menu
-            </h1>
-            <p className="text-lg text-secondary-600" style={{ lineHeight: '1.7' }}>
-              Fresh, local ingredients prepared with care
-            </p>
-          </div>
-        </Container>
-      </Section>
+      <HeroSection
+        headline="Our Menu"
+        description="Fresh, local ingredients prepared with care"
+        ctaText="Order Now"
+        ctaLink="#menu"
+        backgroundImage={getHeroImage('menu') || undefined}
+        align="center"
+      />
 
-      <Section spacing="default">
+      <Section spacing="default" id="menu">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Sidebar Filters */}

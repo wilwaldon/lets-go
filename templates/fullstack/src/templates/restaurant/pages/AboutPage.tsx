@@ -1,10 +1,11 @@
-import React from 'react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { Section } from '@/components/layout/Section';
 import { Container } from '@/components/layout/Container';
+import { HeroSection } from '@/components/common/HeroSection';
 import { TeamCard } from '@/components/common/TeamCard';
 import { BusinessHours } from '@/components/common/BusinessHours';
 import { siteConfig } from '@/config/site.config';
+import { getHeroImage } from '@/lib/heroImages';
 
 const teamMembers = [
   {
@@ -31,24 +32,14 @@ export function AboutPage() {
   return (
     <PageWrapper title="About Us" description="Learn about our story, team, and commitment to quality">
       {/* Hero Section */}
-      <Section spacing="tight" className="pt-24">
-        <Container>
-          <div className="text-center mb-8">
-            <h1
-              className="text-4xl md:text-5xl font-bold text-secondary-900 mb-4"
-              style={{ letterSpacing: '-0.02em' }}
-            >
-              About {siteConfig.business.name}
-            </h1>
-            <p
-              className="text-lg text-secondary-600 max-w-2xl mx-auto"
-              style={{ lineHeight: '1.7' }}
-            >
-              {siteConfig.business.tagline}
-            </p>
-          </div>
-        </Container>
-      </Section>
+      <HeroSection
+        headline={`About ${siteConfig.business.name}`}
+        description={siteConfig.business.tagline}
+        ctaText="Visit Us"
+        ctaLink="/contact"
+        backgroundImage={getHeroImage('about') || undefined}
+        align="center"
+      />
 
       {/* Our Story */}
       <Section>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { Section } from '@/components/layout/Section';
@@ -9,6 +8,7 @@ import { CTABanner } from '@/components/common/CTABanner';
 import { Card, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { siteConfig } from '@/config/site.config';
+import { getHeroImage } from '@/lib/heroImages';
 
 const featuredItems = [
   {
@@ -64,6 +64,7 @@ export function HomePage() {
         description={siteConfig.business.tagline}
         ctaText="View Our Menu"
         ctaLink="/menu"
+        backgroundImage={getHeroImage('home') || undefined}
       />
 
       {/* Featured Items */}

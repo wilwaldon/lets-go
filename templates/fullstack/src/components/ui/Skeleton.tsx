@@ -1,4 +1,3 @@
-import React from 'react';
 
 export type SkeletonVariant = 'line' | 'circle' | 'rectangle';
 

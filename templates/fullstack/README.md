@@ -472,6 +472,46 @@ import { LoadingScreen, LoadingSection, LoadingEmpty } from '@/components/common
 
 ## Customization
 
+### Hero Background Images
+
+The template automatically detects and displays hero background images on all pages. Just add images to `/public/images/` and they'll appear automatically!
+
+**Naming Convention:**
+```
+hero-{pageName}.{extension}
+```
+
+**Examples:**
+- `hero-home.jpg` → Home page
+- `hero-menu.webp` → Menu page
+- `hero-about.jpg` → About page
+- `hero-contact.jpg` → Contact page
+
+**Supported Formats** (in order of preference):
+1. `.webp` - Best performance (recommended)
+2. `.avif` - Excellent quality
+3. `.jpg` / `.jpeg` - Universal compatibility
+4. `.png` - Use only if transparency needed
+
+**Image Requirements:**
+- **Minimum Size**: 1920x800px (landscape)
+- **Aspect Ratio**: 21:9 or 16:9 recommended
+- **File Size**: Keep under 500KB for performance
+- **Composition**: Choose images with good contrast for text overlay
+
+**What Happens Automatically:**
+- ✅ Background image displays full-bleed
+- ✅ 80% dark overlay applied for text readability
+- ✅ Text automatically turns white
+- ✅ Responsive on all devices
+- ✅ No code changes needed!
+
+**Pro Tips:**
+- Add multiple formats (`.webp` + `.jpg`) for best browser compatibility
+- Use image optimization tools like [TinyJPG](https://tinyjpg.com) or [Squoosh](https://squoosh.app)
+- If no image exists, the page displays with a clean white background
+- See `/public/images/README.md` for detailed documentation
+
 ### Adding a New Page
 
 1. Create page component in `src/templates/restaurant/pages/`

@@ -1,4 +1,3 @@
-import React from 'react';
 import { siteConfig } from '@/config/site.config';
 
 interface MapEmbedProps {

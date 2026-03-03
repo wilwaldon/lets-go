@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '@/components/ui/Button';
 import { useCheckout } from '../hooks/useCheckout';
 import { useToast } from '@/components/ui/Toast';

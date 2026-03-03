@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 
@@ -32,7 +31,7 @@ export function HeroSection({
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${backgroundImage})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/30" />
+          <div className="absolute inset-0 bg-black/80" />
         </>
       )}
 

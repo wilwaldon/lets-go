@@ -1,4 +1,3 @@
-import React from 'react';
 import { MenuCategory } from './MenuCategory';
 import { SkeletonCard } from '@/components/ui/Skeleton';
 import type { MenuCategory as MenuCategoryType } from '@/types';

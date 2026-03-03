@@ -23,7 +23,16 @@
       "Bash(node scripts/validate-styles.js:*)",
       "Bash(node scripts/validate-template.js:*)",
       "Bash(node scripts/validate-all.js:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(npm install)",
+      "Bash(npm run type-check:*)",
+      "Bash(node fix-imports.js:*)",
+      "Bash(move:*)",
+      "Bash(node fix-imports.cjs:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(for file in contact.html page-2.html page-3.html page-4.html 404.html)",
+      "Bash(do sed -i 's|</body>|  <script src=\"\"js/heroImages.js\"\"></script>\\\\n</body>|' \"$file\")"
     ]
   }
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Instagram, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { siteConfig } from '@/config/site.config';
 

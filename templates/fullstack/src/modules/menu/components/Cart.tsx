@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { X, ShoppingCart } from 'lucide-react';
 import { CartItem } from './CartItem';
 import { OrderSummary } from './OrderSummary';

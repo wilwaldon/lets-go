@@ -1,14 +1,14 @@
-import React from 'react';
+import { isValidElement, cloneElement, ButtonHTMLAttributes, ReactNode, HTMLAttributes } from 'react';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   isLoading?: boolean;
   asChild?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -74,11 +74,11 @@ export function Button({
   ) : null;
 
   // If asChild is true, clone the child element and merge props
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children, {
+  if (asChild && isValidElement(children)) {
+    return cloneElement(children, {
       className: `${buttonClassName} ${children.props.className || ''}`,
       ...props,
-    } as React.HTMLAttributes<HTMLElement>);
+    } as HTMLAttributes<HTMLElement>);
   }
 
   return (
