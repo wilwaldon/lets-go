@@ -1,0 +1,25 @@
+{
+  "name": "lets-go",
+  "description": "Generate production-ready local business websites. Pick a business type, pick a design style, get a complete site in minutes.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Let's Go Team"
+  },
+  "homepage": "https://github.com/YOUR_USERNAME/lets-go",
+  "repository": "https://github.com/YOUR_USERNAME/lets-go",
+  "license": "MIT",
+  "keywords": [
+    "website",
+    "generator",
+    "restaurant",
+    "salon",
+    "fitness",
+    "business",
+    "static-site",
+    "vite",
+    "react",
+    "supabase"
+  ],
+  "category": "productivity",
+  "commands": [".claude/commands/"]
+}

@@ -1,21 +1,55 @@
-# Let's Go! — Full-Stack Restaurant Template
+# Let's Go! — Full-Stack Business Templates
 
-A production-ready restaurant website built with Vite, React, TypeScript, Tailwind CSS, and Supabase.
+Production-ready business websites built with Vite, React, TypeScript, Tailwind CSS, and Supabase.
 
-## Features
+## Supported Business Types
+
+- **Restaurant / Café**: Menu management, shopping cart, online ordering, payments
+- **Salon / Barbershop**: Service catalog, staff profiles, appointment booking, gallery
+- **Fitness / Gym**: Class schedules, instructor profiles, class booking, memberships
+- **Professional Services**: Practice areas, team profiles, consultations, case studies (law firms, consulting, accounting, etc.)
+
+## Core Features
 
 - **Modern Stack**: Vite + React 18 + TypeScript + Tailwind CSS
 - **Database**: Supabase (PostgreSQL with Row Level Security)
 - **Authentication**: Email/password with Supabase Auth
-- **Menu Management**: Dynamic menu with categories and dietary filters
-- **Shopping Cart**: Local storage persistence with real-time updates
-- **Payments**: Stripe and Square integration (swappable)
 - **Error Handling**: React Error Boundaries with graceful recovery
 - **Environment Validation**: Startup validation with helpful error messages
 - **Logging**: Centralized logger with analytics tracking hooks
 - **Responsive**: Mobile-first design that works on all devices
 - **SEO-Friendly**: React Helmet Async for meta tags
 - **Accessible**: WCAG AA compliant components
+
+## Business-Specific Features
+
+### Restaurant Template
+- Menu management with categories and dietary filters
+- Shopping cart with local storage persistence
+- Checkout and order management
+- Stripe and Square payment integration (swappable)
+
+### Salon Template
+- Service catalog with categories, pricing, and duration
+- Staff member profiles with specialties
+- Appointment booking system with availability management
+- Portfolio gallery organized by categories
+- Customer appointment history
+
+### Fitness Template
+- Class types organized by category (Strength, Cardio, Mind & Body, Specialty)
+- Instructor profiles with certifications and specialties
+- Weekly class schedule with recurring sessions
+- Class booking system with capacity management
+- Membership plans with tiered features
+- User membership tracking
+
+### Professional Services Template
+- Service areas (practice areas) with detailed service offerings
+- Professional profiles with credentials, specialties, and contact information
+- Consultation booking system with meeting type selection (in-person, video, phone)
+- Case studies showcasing successful outcomes
+- Professional availability scheduling
 
 ## Getting Started
 
@@ -74,7 +108,25 @@ Run migrations and seed data:
 supabase db reset --linked
 ```
 
-This creates all tables, applies Row Level Security policies, and loads sample menu items into your cloud database.
+This creates all tables, applies Row Level Security policies, and loads sample data into your cloud database.
+
+**For Salon Template**: If you're using the salon template, also run the salon seed data:
+
+```bash
+supabase db push --file supabase/seed-salon.sql
+```
+
+**For Fitness Template**: If you're using the fitness template, also run the fitness seed data:
+
+```bash
+supabase db push --file supabase/seed-fitness.sql
+```
+
+**For Professional Services Template**: If you're using the professional services template, also run the professional seed data:
+
+```bash
+supabase db push --file supabase/seed-professional.sql
+```
 
 4. **Start development server:**
 
@@ -94,10 +146,16 @@ src/
 │   ├── common/          # Shared components (ErrorBoundary, LoadingScreen, etc.)
 │   └── auth/            # Authentication forms
 ├── modules/
-│   ├── menu/            # Menu display, cart, ordering
+│   ├── menu/            # Menu display, cart, ordering (restaurant)
+│   ├── booking/         # Appointment scheduling (salon)
+│   ├── classes/         # Class schedules and booking (fitness)
+│   ├── consultations/   # Consultation booking (professional services)
 │   └── payments/        # Stripe + Square providers
 ├── templates/
-│   └── restaurant/      # Restaurant-specific pages
+│   ├── restaurant/      # Restaurant-specific pages and routes
+│   ├── salon/           # Salon-specific pages and routes
+│   ├── fitness/         # Fitness-specific pages and routes
+│   └── professional/    # Professional services pages and routes
 ├── config/
 │   ├── site.config.ts   # Business info, hours, social
 │   └── features.config.ts # Module toggles, payment provider

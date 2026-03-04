@@ -8,16 +8,34 @@ Generate production-ready local business websites. Pick a business type, pick a 
 
 ## Quick Start
 
-```bash
-# Clone the repo
-git clone https://github.com/your-username/lets-go.git
-cd lets-go
+### Installation
 
-# Open in Claude Code and run
+**Option 1: Claude Code Plugin (Recommended)**
+
+```bash
+# In Claude Code, add the marketplace:
+/plugin marketplace add YOUR_USERNAME/lets-go
+
+# Install the plugin:
+/plugin install lets-go@YOUR_USERNAME
+
+# Start building:
 /letsgo
 ```
 
-Claude Code will ask you four questions:
+**Option 2: Clone the Repository**
+
+```bash
+git clone https://github.com/YOUR_USERNAME/lets-go.git
+cd lets-go
+
+# Open in Claude Code and run:
+/letsgo
+```
+
+### Usage
+
+Run `/letsgo` and Claude Code will ask you four questions:
 
 1. **Stack** — Static site or full stack (Vite + React + Supabase)
 2. **Business type** — Restaurant, Salon, Fitness, or Professional Services
@@ -79,6 +97,8 @@ See `UPGRADE-SUMMARY.md` and `BLEEDING-EDGE-GUIDE.md` for complete details.
 
 ## Commands
 
+All commands are available after installing the plugin.
+
 | Command              | What it does                           |
 | -------------------- | -------------------------------------- |
 | `/letsgo`            | Build a new site from scratch          |
@@ -89,6 +109,9 @@ See `UPGRADE-SUMMARY.md` and `BLEEDING-EDGE-GUIDE.md` for complete details.
 | `/theme`             | Change colors and fonts                |
 | `/content`           | Scrape a URL → generate site-data.json |
 | `/export`            | Zip the project for client handoff     |
+| `/accessibility`     | WCAG AA compliance audit and fixes     |
+| `/copy`              | Audit and fix copy quality             |
+| `/switch-style`      | Change to a different design style     |
 
 ## What You Get
 
@@ -265,6 +288,28 @@ Features optimized for speed:
 ## Requirements
 
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI
+
+## Distribution
+
+Let's Go! is distributed as a Claude Code plugin via GitHub. Users can install it through the plugin marketplace system without needing to clone the repository or install Node.js.
+
+### For Plugin Users
+
+Install via Claude Code:
+```bash
+/plugin marketplace add YOUR_USERNAME/lets-go
+/plugin install lets-go@YOUR_USERNAME
+```
+
+### For Contributors
+
+To publish updates:
+1. Update version in `.claude-plugin/plugin.json`
+2. Update version in `.claude-plugin/marketplace.json`
+3. Commit and push to GitHub
+4. Users get updates automatically with `/plugin marketplace update`
+
+See `PUBLISHING.md` for detailed publishing instructions.
 
 ## License
 

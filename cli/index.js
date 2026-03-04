@@ -236,11 +236,47 @@ async function generateFullStackSite(answers) {
     const templatesDir = path.join(__dirname, '..', 'templates', 'fullstack');
     copyDirectory(templatesDir, projectName);
 
+    // Step 2b: Configure business-specific template
+    spinner.text = `Configuring ${businessType} template...`;
+
+    // Copy business-specific template files (restaurant, salon, fitness, or professional)
+    const businessTemplateDir = path.join(projectName, 'src', 'templates', businessType);
+    if (!fs.existsSync(businessTemplateDir)) {
+      throw new Error(`Business type "${businessType}" template not found. Currently supported: restaurant, salon, fitness, professional`);
+    }
+
+    // Update App.tsx to import the correct routes
+    const appTsxPath = path.join(projectName, 'src', 'App.tsx');
+    let appTsx = fs.readFileSync(appTsxPath, 'utf-8');
+    appTsx = appTsx.replace(
+      "import { router } from './templates/restaurant/routes';",
+      `import { router } from './templates/${businessType}/routes';`
+    );
+    fs.writeFileSync(appTsxPath, appTsx);
+
+    // Copy business-specific site config if it exists
+    const businessConfigPath = path.join(projectName, 'src', 'templates', businessType, 'config', 'site.config.ts');
+    if (fs.existsSync(businessConfigPath)) {
+      const destConfigPath = path.join(projectName, 'src', 'config', 'site.config.ts');
+      fs.copyFileSync(businessConfigPath, destConfigPath);
+    }
+
     // Step 3: Update site.config.ts with business name
     spinner.text = 'Configuring site settings...';
     const siteConfigPath = path.join(projectName, 'src', 'config', 'site.config.ts');
     let siteConfig = fs.readFileSync(siteConfigPath, 'utf-8');
-    siteConfig = siteConfig.replace("name: 'The Local Kitchen'", `name: '${businessName}'`);
+
+    // Replace business name based on template type
+    if (businessType === 'restaurant') {
+      siteConfig = siteConfig.replace("name: 'The Local Kitchen'", `name: '${businessName}'`);
+    } else if (businessType === 'salon') {
+      siteConfig = siteConfig.replace("name: 'Luxe Hair Studio'", `name: '${businessName}'`);
+    } else if (businessType === 'fitness') {
+      siteConfig = siteConfig.replace("name: 'Peak Performance Gym'", `name: '${businessName}'`);
+    } else if (businessType === 'professional') {
+      siteConfig = siteConfig.replace("name: 'Anderson & Chen Law Firm'", `name: '${businessName}'`);
+    }
+
     fs.writeFileSync(siteConfigPath, siteConfig);
 
     // Step 4: Update package.json name
@@ -254,7 +290,8 @@ async function generateFullStackSite(answers) {
     spinner.text = 'Updating HTML title...';
     const indexHtmlPath = path.join(projectName, 'index.html');
     let indexHtml = fs.readFileSync(indexHtmlPath, 'utf-8');
-    indexHtml = indexHtml.replace("Let's Go! Restaurant", businessName);
+    // Generic replacement that works for any business type
+    indexHtml = indexHtml.replace(/<title>.*?<\/title>/, `<title>${businessName}</title>`);
     fs.writeFileSync(indexHtmlPath, indexHtml);
 
     // Step 6: Update favicon

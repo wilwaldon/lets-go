@@ -1,0 +1,40 @@
+{
+  "name": "lets-go-marketplace",
+  "owner": {
+    "name": "Let's Go Team"
+  },
+  "metadata": {
+    "description": "Official Let's Go! plugin marketplace - Generate production-ready local business websites",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "lets-go",
+      "source": ".",
+      "description": "Generate production-ready local business websites with Let's Go! Includes commands for creating sites, adding pages, redesigning layouts, switching styles, and more.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "keywords": [
+        "website",
+        "generator",
+        "restaurant",
+        "salon",
+        "fitness",
+        "business",
+        "static-site",
+        "fullstack",
+        "vite",
+        "react",
+        "supabase",
+        "design",
+        "templates"
+      ],
+      "author": {
+        "name": "Let's Go Team"
+      },
+      "homepage": "https://github.com/YOUR_USERNAME/lets-go",
+      "repository": "https://github.com/YOUR_USERNAME/lets-go",
+      "license": "MIT"
+    }
+  ]
+}
