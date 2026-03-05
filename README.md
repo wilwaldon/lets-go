@@ -1,10 +1,107 @@
 # Let's Go!
 
-Generate production-ready local business websites. Pick a business type, pick a design style, get a complete site in minutes.
+Generate production-ready local business websites in minutes. Pick a business type, pick a design style, and get a complete site ready to deploy.
 
-**No frameworks. No build tools.** Just HTML, CSS, and JS with native scroll-driven animations, glassmorphism, bento grids, and View Transitions API.
+**Two Options:**
+- **Static Site** - No frameworks, no build tools. Just HTML, CSS, and vanilla JS.
+- **Full Stack** - Vite + React + TypeScript + Tailwind + Supabase for booking, payments, and user accounts.
 
 **Not 2024 generic.** Actually future.
+
+---
+
+## Prerequisites
+
+### For Static Sites
+
+**Nothing!** Static sites work in any browser with zero dependencies. Just open `index.html`.
+
+### For Full Stack Sites
+
+You'll need these tools installed:
+
+#### 1. Node.js (v20+ LTS)
+
+**Check if installed:**
+```bash
+node --version
+npm --version
+```
+
+**Install (2026):**
+
+- **Windows:** Download from [nodejs.org](https://nodejs.org) or use `winget`:
+  ```bash
+  winget install OpenJS.NodeJS.LTS
+  ```
+
+- **macOS:** Use Homebrew:
+  ```bash
+  brew install node@20
+  ```
+
+- **Linux (Ubuntu/Debian):**
+  ```bash
+  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+  ```
+
+#### 2. Git
+
+**Check if installed:**
+```bash
+git --version
+```
+
+**Install:**
+
+- **Windows:** Download from [git-scm.com](https://git-scm.com) or use `winget`:
+  ```bash
+  winget install Git.Git
+  ```
+
+- **macOS:**
+  ```bash
+  brew install git
+  ```
+
+- **Linux:**
+  ```bash
+  sudo apt-get install git
+  ```
+
+#### 3. Supabase CLI (Optional - for local database development)
+
+**Check if installed:**
+```bash
+supabase --version
+```
+
+**Install:**
+
+```bash
+npm install -g supabase
+```
+
+**Requires Docker** (see below) for local database instances.
+
+#### 4. Docker Desktop (Optional - for local Supabase)
+
+Only needed if you want to run a local Supabase database instead of using Supabase Cloud.
+
+**Check if installed:**
+```bash
+docker --version
+```
+
+**Install:**
+
+- **Windows/macOS:** Download [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- **Linux:** Follow [Docker Engine installation](https://docs.docker.com/engine/install/)
+
+After installing, start Docker Desktop and ensure it's running.
+
+---
 
 ## Quick Start
 
@@ -33,46 +130,103 @@ cd lets-go
 /letsgo
 ```
 
-### Usage
+---
 
-Run `/letsgo` and Claude Code will ask you four questions:
+## Usage
 
-1. **Stack** — Static site or full stack (Vite + React + Supabase)
+### Generate a New Site
+
+Run `/letsgo` and answer four questions:
+
+1. **Stack** — Static site or Full Stack (Vite + React + Supabase)
 2. **Business type** — Restaurant, Salon, Fitness, or Professional Services
 3. **Design style** — Editorial, Modern Minimal, Bold, Warm, Classic, Material, Kinetic, Glass, or Brutal
-4. **Business name**
+4. **Business name** — Your business name
 
-Then it builds everything.
+Then Let's Go! builds everything.
 
-## What's New 
+### Static Site Workflow
 
-🚀 **Major upgrade:** Templates now feature new styles:
+```bash
+# 1. Generate the site
+/letsgo
 
-### Phase 1: Modern Features (Completed)
-- **3 new "Future" styles:** Kinetic, Glass, Brutal
-- **CSS scroll-driven animations** (native, 60fps)
-- **Bento grid layouts** (Apple-style)
-- **Glassmorphism** (Liquid Glass aesthetic)
-- **View Transitions API** (smooth page changes)
-- **Variable fonts** (animated weight shifts)
-- **Container queries** (component-based responsive design)
+# 2. Open in browser
+cd your-site-name
+open index.html
 
-### Phase 2: Bleeding Edge Features (NEW!)
-- **15 cutting-edge layout techniques** including:
-  - CSS Anchor Positioning (Chrome 125+)
-  - CSS Subgrid (perfect alignment across nested grids)
-  - CSS Masonry Layout (native Pinterest-style)
-  - Scroll-linked color transitions
-  - Clip-path morphing
-  - Text reveals (character-by-character)
-  - Magnetic cursor effects
-  - Full-bleed breakout grids
-  - 3D perspective scrolling
-  - Morphing blob shapes
+# 3. Edit content
+# Edit site-data.json with your business info
 
-All with progressive enhancement and graceful fallbacks for older browsers.
+# 4. Deploy
+# Upload to any static host (Netlify, Vercel, Cloudflare Pages, GitHub Pages)
+```
 
-See `UPGRADE-SUMMARY.md` and `BLEEDING-EDGE-GUIDE.md` for complete details.
+**No build step. No dependencies. Just HTML, CSS, and JS.**
+
+### Full Stack Workflow
+
+```bash
+# 1. Generate the site
+/letsgo
+
+# 2. Install dependencies
+cd your-site-name
+npm install
+
+# 3. Set up Supabase
+# Option A: Use Supabase Cloud (Recommended)
+# - Create project at https://supabase.com
+# - Copy URL and anon key to .env.local
+# - Run migrations: supabase db push
+
+# Option B: Use Local Supabase (Requires Docker)
+# - Ensure Docker Desktop is running
+# - supabase init
+# - supabase start
+# - Copy local credentials to .env.local
+
+# 4. Run migrations
+supabase db reset
+
+# 5. Start dev server
+npm run dev
+
+# 6. Build for production
+npm run build
+
+# 7. Deploy
+# Frontend: Vercel (recommended), Netlify, or Cloudflare Pages
+# Database: Supabase Cloud (already set up)
+```
+
+---
+
+## Business Types
+
+Each business type includes industry-specific pages and functionality:
+
+### Restaurant
+- **Pages:** Home, Menu, About, Contact, Checkout
+- **Features:** Menu with dietary filters, shopping cart, online ordering
+- **Module:** Order management with cart persistence
+
+### Salon
+- **Pages:** Home, Services, Team, Gallery, Booking, Contact
+- **Features:** Service catalog, staff profiles, portfolio gallery, appointment booking
+- **Module:** Booking system with service selection and staff scheduling
+
+### Fitness / Gym
+- **Pages:** Home, Classes, Schedule, Trainers, Memberships, Contact
+- **Features:** Class types, weekly schedule, trainer profiles, membership tiers
+- **Module:** Class booking with capacity management
+
+### Professional Services (Law, Consulting, etc.)
+- **Pages:** Home, Services, Team, Case Studies, Consultation, Contact
+- **Features:** Practice areas, attorney profiles, case studies, consultation scheduling
+- **Module:** Consultation booking with meeting type selection
+
+---
 
 ## Design Styles
 
@@ -95,6 +249,8 @@ See `UPGRADE-SUMMARY.md` and `BLEEDING-EDGE-GUIDE.md` for complete details.
 | **Glass**   | Apple's Liquid Glass aesthetic, layered depth, translucent surfaces, soft shadows. iOS / macOS.        |
 | **Brutal**  | Neo-brutalism, harsh borders, high contrast, intentional chaos, raw aesthetics. Gumroad / Anti-design. |
 
+---
+
 ## Commands
 
 All commands are available after installing the plugin.
@@ -113,7 +269,11 @@ All commands are available after installing the plugin.
 | `/copy`              | Audit and fix copy quality             |
 | `/switch-style`      | Change to a different design style     |
 
-## What You Get
+---
+
+## Project Structure
+
+### Static Site
 
 ```
 your-site/
@@ -138,6 +298,43 @@ your-site/
 │   └── main.js         # Scroll animations, lazy loading, init
 └── images/
 ```
+
+### Full Stack Site
+
+```
+your-site/
+├── src/
+│   ├── templates/
+│   │   ├── restaurant/      # Restaurant template
+│   │   ├── salon/           # Salon template
+│   │   ├── fitness/         # Fitness template
+│   │   └── professional/    # Professional services template
+│   ├── components/
+│   │   ├── ui/              # Button, Card, Modal, Toast, etc.
+│   │   ├── layout/          # Header, Footer, Section, Container
+│   │   ├── common/          # HeroSection, ContactForm, etc.
+│   │   └── auth/            # LoginForm, SignUpForm
+│   ├── modules/
+│   │   ├── menu/            # Restaurant ordering (cart, checkout)
+│   │   ├── booking/         # Salon appointments
+│   │   ├── classes/         # Fitness class bookings
+│   │   └── consultations/   # Professional consultations
+│   ├── contexts/            # AuthContext, CartContext
+│   ├── lib/                 # Utilities, Supabase client
+│   └── types/               # TypeScript definitions
+├── supabase/
+│   ├── migrations/          # Database schema
+│   └── seed-*.sql           # Sample data for each template
+├── public/
+│   └── images/              # Hero images, logos
+├── .env.local               # Supabase credentials (never commit!)
+├── package.json
+├── vite.config.ts
+├── tailwind.config.js
+└── tsconfig.json
+```
+
+---
 
 ## Built-in Features
 
@@ -176,11 +373,23 @@ your-site/
 - **Mobile-first** — Responsive from 320px up, natural bento stacking
 - **Contact form** — Validation, honeypot spam protection, mailto fallback
 - **SEO ready** — Sitemap, robots.txt, meta tags, semantic HTML
-- **Zero dependencies** — No npm, no build step, no frameworks
+- **Zero dependencies (static)** — No npm, no build step, no frameworks
 - **Progressive enhancement** — Modern features with graceful fallbacks
 - **Auto hero images** — Drop images in `/images/` folder and they automatically appear with text overlays
 
-### Hero Background Images
+### Full Stack Features
+
+- **Authentication** — Supabase Auth with email/password and social providers
+- **Database** — PostgreSQL with Row Level Security enabled by default
+- **Real-time** — Live updates for bookings, orders, availability
+- **File storage** — Image uploads for profiles, galleries
+- **Edge functions** — Serverless functions for webhooks, emails
+- **Payment processing** — Stripe integration (Square as alternative)
+- **Type safety** — Full TypeScript coverage in strict mode
+
+---
+
+## Hero Background Images
 
 Both static and full-stack templates support automatic hero background images. Just add images to the `/images/` folder (or `/public/images/` for full-stack) and they'll automatically appear on pages!
 
@@ -207,6 +416,117 @@ images/
 
 See `/images/README.md` in any generated site for detailed documentation.
 
+---
+
+## Testing Templates Locally
+
+The project includes test environments for all templates. These let you preview templates without setting up Supabase.
+
+### Available Test Environments
+
+```bash
+# Fitness template (emerald green)
+cd fitness-test
+npm install
+npm run dev
+
+# Salon template (pink)
+cd salon-test
+npm install
+npm run dev
+
+# Professional services template (blue)
+cd professional-test
+npm install
+npm run dev
+```
+
+All test environments:
+- Use dummy Supabase credentials (no database needed)
+- Display hardcoded sample data
+- Show full UI/navigation/styling
+- Run at http://localhost:5173
+
+**Note:** Test directories are in `.gitignore` and not part of the published package.
+
+---
+
+## Deployment
+
+### Static Sites
+
+Deploy to any static host:
+
+**Vercel (Recommended):**
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+cd your-site
+vercel
+```
+
+**Netlify:**
+```bash
+# Install Netlify CLI
+npm i -g netlify-cli
+
+# Deploy
+cd your-site
+netlify deploy
+```
+
+**Cloudflare Pages:**
+- Push to GitHub
+- Connect repository in Cloudflare Pages dashboard
+- Deploy automatically on push
+
+**GitHub Pages:**
+```bash
+# Push to GitHub
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/username/repo.git
+git push -u origin main
+
+# Enable GitHub Pages in repository settings
+```
+
+### Full Stack Sites
+
+**Frontend (Vercel - Recommended):**
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Build and deploy
+npm run build
+vercel --prod
+
+# Set environment variables in Vercel dashboard:
+# VITE_SUPABASE_URL
+# VITE_SUPABASE_ANON_KEY
+```
+
+**Database (Supabase Cloud):**
+
+Your Supabase project is already deployed in the cloud. Just ensure:
+1. Migrations have been run (`supabase db push`)
+2. RLS policies are enabled (they are by default)
+3. Environment variables are set in your frontend deployment
+
+**Alternative Hosts:**
+- Netlify (similar to Vercel)
+- Cloudflare Pages (supports server-side functions)
+- Railway (full stack with database)
+- Render (full stack with database)
+
+---
+
 ## Why These Templates Are Different
 
 ### Not 2024 Generic — Actually Future (2025-2026)
@@ -227,17 +547,7 @@ Every design decision is opinionated against common AI tells. No gradient heroes
 
 The design rules, copy guidelines, and self-check audits are documented in `CLAUDE.md`.
 
-## How It Works
-
-Let's Go! is a prompt engineering system for Claude Code. The repo contains:
-
-- **CLAUDE.md** — Design rules, copy guidelines, layout recipes, the AI slop checklist
-- **PROMPTS.md** — Build prompts for full-stack and static site generation
-- **ARCHITECTURE.md** — System architecture and data flow
-- **templates/** — Base HTML/CSS/JS, business configs, design token files
-- **.claude/commands/** — Slash commands that Claude Code executes
-
-When you run `/letsgo`, Claude Code reads the docs, copies the base template, merges the business config, applies the design style tokens, customizes the HTML, writes human copy, runs a 20-point self-check, validates all links, and commits.
+---
 
 ## Browser Support
 
@@ -269,6 +579,8 @@ All modern features use progressive enhancement with graceful fallbacks:
 
 **Older browsers:** Get clean, functional designs without animations. Core experience is identical.
 
+---
+
 ## Performance
 
 Expected Lighthouse scores:
@@ -283,11 +595,62 @@ Features optimized for speed:
 - Native CSS animations (off main thread)
 - Variable fonts (75% smaller than multiple files)
 - Lazy image loading
-- Minimal JavaScript (~15KB)
+- Minimal JavaScript (~15KB for static, tree-shaken React for full-stack)
+- Code splitting (full-stack only)
 
-## Requirements
+---
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI
+## Troubleshooting
+
+### Full Stack Setup Issues
+
+**"Supabase connection failed"**
+- Check `.env.local` has correct VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY
+- Ensure you're using the ANON key, not the service role key
+- Verify Supabase project is active (not paused)
+
+**"Database migration failed"**
+- Ensure Docker Desktop is running (for local Supabase)
+- Run `supabase db reset` to reset local database
+- Check migration files for syntax errors
+
+**"Module not found" errors**
+- Delete `node_modules` and `package-lock.json`
+- Run `npm install` again
+- Check Node.js version: `node --version` (should be v20+)
+
+**Build fails with TypeScript errors**
+- Run `npm run type-check` to see all errors
+- Ensure all `import` statements use correct paths
+- Check `tsconfig.json` is not modified
+
+### Static Site Issues
+
+**Images not loading**
+- Check image paths are relative: `images/hero-home.jpg`
+- Ensure images exist in the `images/` folder
+- Check browser console for 404 errors
+
+**Animations not working**
+- Check browser version (need Chrome 115+, Firefox 144+, or Safari with polyfill)
+- Open DevTools and look for JavaScript errors
+- Ensure `main.js` is loading correctly
+
+---
+
+## How It Works
+
+Let's Go! is a prompt engineering system for Claude Code. The repo contains:
+
+- **CLAUDE.md** — Design rules, copy guidelines, layout recipes, the AI slop checklist
+- **PROMPTS.md** — Build prompts for full-stack and static site generation
+- **ARCHITECTURE.md** — System architecture and data flow
+- **templates/** — Base HTML/CSS/JS, React components, business configs, design token files
+- **.claude/commands/** — Slash commands that Claude Code executes
+
+When you run `/letsgo`, Claude Code reads the docs, copies the appropriate template (static or full-stack), merges the business config, applies the design style tokens, customizes the code, writes human copy, runs a 20-point self-check, validates all links, and commits.
+
+---
 
 ## Distribution
 
@@ -310,6 +673,17 @@ To publish updates:
 4. Users get updates automatically with `/plugin marketplace update`
 
 See `PUBLISHING.md` for detailed publishing instructions.
+
+---
+
+## Documentation
+
+- **[CLAUDE.md](CLAUDE.md)** - Complete design system, coding conventions, and guidelines
+- **[templates/fullstack/README.md](templates/fullstack/README.md)** - Full-stack template documentation
+- **[templates/static/README.md](templates/static/README.md)** - Static template documentation
+- **[SESSION-NOTES.md](SESSION-NOTES.md)** - Development session notes and progress tracking
+
+---
 
 ## License
 
