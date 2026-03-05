@@ -21,6 +21,16 @@ export interface StaffMember {
 export interface TimeSlot {
   time: string;
   available: boolean;
+  displayTime?: string; // 12-hour format for display
+}
+
+export interface AvailabilityWindow {
+  id: string;
+  staffId: string;
+  dayOfWeek: number; // 0-6 (Sunday-Saturday)
+  startTime: string; // "HH:MM"
+  endTime: string; // "HH:MM"
+  isAvailable: boolean;
 }
 
 export interface Appointment {

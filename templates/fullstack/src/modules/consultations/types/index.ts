@@ -27,6 +27,15 @@ export interface Professional {
   phone?: string;
 }
 
+export interface ProfessionalAvailabilityWindow {
+  id: string;
+  professionalId: string;
+  dayOfWeek: number; // 0-6 (Sunday-Saturday)
+  startTime: string; // "HH:MM"
+  endTime: string; // "HH:MM"
+  isAvailable: boolean;
+}
+
 export interface Consultation {
   id: string;
   userId: string;
