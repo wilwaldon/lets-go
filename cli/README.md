@@ -57,6 +57,40 @@ Then open http://localhost:3000
 ## Requirements
 
 - Node.js 18 or higher
+- Git (for repository initialization)
+
+## Validation & Quality
+
+The CLI includes comprehensive validation to ensure your generated site is production-ready:
+
+### Pre-flight Checks
+Before generation, the CLI verifies:
+- ✓ Node.js version (v18+)
+- ✓ Git installation
+- ✓ npm availability
+- ✓ Write permissions
+- ✓ Available disk space
+
+### Post-generation Validation
+After generation, the CLI validates:
+- ✓ All required files created
+- ✓ Configuration structure
+- ✓ Git repository initialized
+- ✓ Environment variables (full-stack)
+
+### Content Quality Checks
+- ⚠ AI-generated slop detection (removes generic phrases)
+- ⚠ Invalid contact information
+- ⚠ Placeholder text detection
+
+### Security & Best Practices
+- ✗ Missing .gitignore
+- ✗ Hardcoded secrets detection
+- ⚠ Missing image alt text (accessibility)
+- ℹ Console.log statements
+- ℹ TODO comments
+
+See [lib/README.md](lib/README.md) for detailed documentation.
 
 ## License
 

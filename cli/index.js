@@ -18,6 +18,12 @@ import { fileURLToPath } from 'url';
 import prompts from 'prompts';
 import chalk from 'chalk';
 import ora from 'ora';
+import {
+  PreFlightChecker,
+  PostGenerationValidator,
+  ConfigLinter,
+  MistakesDetector
+} from './lib/validators.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -139,6 +145,24 @@ async function generateStaticSite(answers) {
     });
 
     spinner.succeed(chalk.green('✓ Site generated successfully!'));
+
+    // Run post-generation validation
+    spinner.start('Running validations...');
+    const validator = new PostGenerationValidator(projectName, 'static');
+    await validator.runAll();
+    spinner.stop();
+    validator.printResults();
+
+    // Run config linter
+    const siteDataPath = path.join(projectName, 'site-data.json');
+    const linter = new ConfigLinter(siteDataPath, 'json');
+    await linter.lintJsonConfig();
+    linter.printResults();
+
+    // Run common mistakes detector
+    const detector = new MistakesDetector(projectName, 'static');
+    await detector.detectAll();
+    detector.printResults();
 
     // Success message
     console.log('');
@@ -331,6 +355,18 @@ VITE_STRIPE_PUBLISHABLE_KEY=${stripeKey}
 
     spinner.succeed(chalk.green('✓ Full-stack site generated successfully!'));
 
+    // Run post-generation validation
+    spinner.start('Running validations...');
+    const validator = new PostGenerationValidator(projectName, 'fullstack');
+    await validator.runAll();
+    spinner.stop();
+    validator.printResults();
+
+    // Run common mistakes detector
+    const detector = new MistakesDetector(projectName, 'fullstack');
+    await detector.detectAll();
+    detector.printResults();
+
     // Success message
     console.log('');
     console.log(chalk.bold.cyan('Your full-stack site is ready!'));
@@ -387,6 +423,15 @@ async function main() {
   console.log('');
   console.log(chalk.bold.cyan("Let's Go!") + chalk.dim(' — Generate a production-ready website'));
   console.log('');
+
+  // Run pre-flight checks
+  const preFlightChecker = new PreFlightChecker();
+  await preFlightChecker.runAll();
+  const canProceed = preFlightChecker.printResults();
+
+  if (!canProceed) {
+    process.exit(1);
+  }
 
   const answers = await prompts(questions, {
     onCancel: () => {

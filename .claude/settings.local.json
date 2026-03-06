@@ -33,7 +33,12 @@
       "Bash(npm run dev:*)",
       "Bash(for file in contact.html page-2.html page-3.html page-4.html 404.html)",
       "Bash(do sed -i 's|</body>|  <script src=\"\"js/heroImages.js\"\"></script>\\\\n</body>|' \"$file\")",
-      "Bash(copy:*)"
+      "Bash(copy:*)",
+      "Bash(git push:*)",
+      "Bash(node test-validators.js:*)",
+      "Bash(node test-validators-full.js:*)",
+      "Bash(node test-full-cli.js)",
+      "Bash(node test-fullstack-cli.js:*)"
     ]
   }
 }
