@@ -1,8 +1,8 @@
-# CLAUDE.md — Let's Go!
+# CLAUDE.md — LetsGo!
 
 ## Project Overview
 
-Let's Go! is an open-source CLI tool and starter kit for generating production-ready local business websites. Users run `npx create-lets-go-app` and get a fully scaffolded, deployable project tailored to their business type.
+LetsGo! is an open-source CLI tool and starter kit for generating production-ready local business websites. Users run `npx create-letsgo-app` and get a fully scaffolded, deployable project tailored to their business type.
 
 **Stack:** Vite + React + TypeScript + Tailwind CSS + Supabase + Stripe/Square
 **Deployment:** Vercel
@@ -42,179 +42,497 @@ Let's Go! is an open-source CLI tool and starter kit for generating production-r
 
 ---
 
-## Documentation
+## Project Structure — Static Site (HTML / CSS / JS)
 
-### Architecture
+When the static site option is selected, the project structure is intentionally simple. No build tools, no npm, no frameworks.
 
-Let's Go! supports two project types:
+```
+project-name/
+├── site-data.json            # ALL site content lives here — single source of truth
+├── index.html                # Homepage
+├── about.html                # About page
+├── [page-3].html             # Business-specific (menu, services, classes, etc.)
+├── [page-4].html             # Business-specific (order, book, membership, portal)
+├── contact.html              # Contact page
+├── 404.html                  # Error page — clean, on-brand, link back to home
+├── sitemap.xml               # Auto-generated sitemap listing all pages
+├── css/
+│   ├── reset.css             # Minimal CSS reset (box-sizing, margin/padding zero)
+│   ├── variables.css         # CSS custom properties (colors, fonts, spacing, breakpoints)
+│   └── styles.css            # All site styles — imports reset and variables
+├── js/
+│   ├── data.js               # Loads site-data.json and populates the page content
+│   ├── nav.js                # Mobile hamburger menu toggle
+│   ├── forms.js              # Contact form validation and submission
+│   └── main.js               # Any page-specific interactivity
+├── images/                   # Placeholder images directory
+│   └── .gitkeep
+├── .gitignore
+├── CHANGELOG.md              # Version history — tracks all content and design changes
+└── README.md                 # Setup instructions (just open index.html or use Live Server)
+```
 
-1. **Static Site (HTML/CSS/JS):** [docs/STATIC-SITE.md](docs/STATIC-SITE.md)
-   - Simple, no build tools
-   - site-data.json as single source of truth
-   - Vanilla JavaScript with data binding
-   - Perfect for small local businesses
+### site-data.json
 
-2. **Full Stack (Vite + React + TypeScript):** [docs/FULLSTACK.md](docs/FULLSTACK.md)
-   - Modern React application
-   - Modular plugin system
-   - Supabase backend integration
-   - Advanced features (booking, payments, portal)
+This is the single source of truth for all site content. Every piece of text, every menu item, every team member, every hour of operation lives here. The HTML files reference this data via `data.js`, which fetches the JSON and populates the DOM on page load.
 
-### Design & Development
+**Base structure (shared across all business types):**
 
-- **Design Rules:** [docs/DESIGN-RULES.md](docs/DESIGN-RULES.md)
-  - Design philosophy and AI slop checklist
-  - Layout patterns and component rules
-  - Copy rules and voice guidelines
-  - Section recipes and page blueprints
+```json
+{
+  "business": {
+    "name": "Business Name",
+    "tagline": "Short tagline here",
+    "description": "A few sentences about the business.",
+    "phone": "(555) 123-4567",
+    "email": "hello@business.com",
+    "address": {
+      "street": "123 Main St",
+      "city": "Savannah",
+      "state": "GA",
+      "zip": "31401"
+    },
+    "coordinates": {
+      "lat": 32.0809,
+      "lng": -81.0912
+    }
+  },
+  "hours": {
+    "monday": { "open": "9:00 AM", "close": "5:00 PM" },
+    "tuesday": { "open": "9:00 AM", "close": "5:00 PM" },
+    "wednesday": { "open": "9:00 AM", "close": "5:00 PM" },
+    "thursday": { "open": "9:00 AM", "close": "5:00 PM" },
+    "friday": { "open": "9:00 AM", "close": "5:00 PM" },
+    "saturday": { "open": "10:00 AM", "close": "3:00 PM" },
+    "sunday": "closed"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "twitter": "",
+    "linkedin": "",
+    "yelp": ""
+  },
+  "theme": {
+    "primaryColor": "#2563EB",
+    "secondaryColor": "#1e293b"
+  },
+  "navigation": [
+    { "label": "Home", "href": "index.html" },
+    { "label": "About", "href": "about.html" },
+    { "label": "Contact", "href": "contact.html" }
+  ],
+  "hero": {
+    "headline": "Headline goes here",
+    "subheadline": "Supporting text goes here.",
+    "ctaText": "Get Started",
+    "ctaLink": "contact.html"
+  },
+  "testimonials": [
+    {
+      "name": "Customer Name",
+      "text": "Review text here.",
+      "rating": 5
+    }
+  ],
+  "team": [
+    {
+      "name": "Team Member",
+      "title": "Position",
+      "bio": "Short bio.",
+      "photo": "images/team-1.jpg"
+    }
+  ]
+}
+```
 
-- **Coding Conventions:** [docs/CODING-CONVENTIONS.md](docs/CODING-CONVENTIONS.md)
-  - Naming conventions
-  - Component patterns
-  - State management
-  - Error handling and accessibility
+**Additional fields by business type:**
 
-- **Database:** [docs/DATABASE.md](docs/DATABASE.md)
-  - Migration patterns
-  - RLS policies
-  - Schema conventions
+Restaurant adds:
+
+```json
+{
+  "menu": {
+    "categories": [
+      {
+        "name": "Appetizers",
+        "items": [
+          {
+            "name": "Item Name",
+            "description": "Short description.",
+            "price": 12.99,
+            "dietary": ["vegetarian", "gluten-free"],
+            "image": "images/menu-1.jpg"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Salon adds:
+
+```json
+{
+  "services": [
+    {
+      "name": "Haircut",
+      "description": "Description of service.",
+      "duration": "45 min",
+      "price": 45
+    }
+  ]
+}
+```
+
+Fitness adds:
+
+```json
+{
+  "classes": [
+    {
+      "name": "Yoga Flow",
+      "instructor": "Name",
+      "day": "Monday",
+      "time": "9:00 AM",
+      "duration": "60 min",
+      "level": "All levels"
+    }
+  ],
+  "memberships": [
+    {
+      "name": "Basic",
+      "price": 29,
+      "period": "month",
+      "features": ["Gym access", "Locker room"]
+    }
+  ]
+}
+```
+
+Professional adds:
+
+```json
+{
+  "services": [
+    {
+      "name": "Consulting",
+      "description": "Description of service.",
+      "icon": "briefcase"
+    }
+  ],
+  "credentials": ["Licensed in State of Georgia", "Board Certified"]
+}
+```
+
+### How data.js Works
+
+- On page load, `data.js` fetches `site-data.json`
+- It populates elements that have `data-bind` attributes matching JSON paths
+- Example: `<span data-bind="business.name"></span>` gets populated with the business name
+- For arrays (menu items, team, testimonials), it clones a `<template>` element and fills it
+- Navigation is generated dynamically from the `navigation` array
+- CSS custom properties are set from `theme.primaryColor` and `theme.secondaryColor`
+- This means the HTML files are basically shells — all real content comes from the JSON
+
+**Note:** Since `fetch()` requires a server for local files, the README should tell users to run `npx serve` or use VS Code Live Server for local development. Direct file:// opening will not load the JSON.
+
+### Static Site Conventions
+
+- **Base template lives at `templates/static/base/`** — this is the shared boilerplate, never edited per-project
+- **Business configs live at `templates/static/configs/`** — one JSON per business type with page mappings and sample content
+- **Per-project sites are generated** by copying base/ and merging the appropriate config
+- **No build step** — files work when opened directly in a browser or served from any host
+- **Shared nav/footer** — duplicated across HTML files (no JS injection, keeps it simple and SEO-friendly)
+- **CSS custom properties** for theming — change colors in one file, updates everywhere
+- **Semantic HTML** — `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`
+- **Mobile-first CSS** — base styles are mobile, `@media` queries add desktop layouts
+- **No external dependencies** — no CDN links, no Google Fonts embed, no jQuery, no Bootstrap
+- **System font stack** — `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`
+- **Vanilla JS only** — no libraries, no transpilation needed
+- **Each page is self-contained** — no JS routing, every page is a real HTML file
+
+### 404 Page
+
+- Clean, on-brand error page using the same header/footer as the rest of the site
+- Friendly message: not robotic, not cutesy — just helpful
+- Link back to homepage
+- Consistent with the site's color scheme and typography
+- Works on Vercel, Netlify, and GitHub Pages (all recognize 404.html automatically)
+
+### Sitemap (sitemap.xml)
+
+- Lists all HTML pages with full URLs
+- Includes `<lastmod>` dates (set to build date initially)
+- Must be updated whenever pages are added or removed (the `/addpage` command handles this)
+- Format: standard XML sitemap protocol
+
+### Changelog (CHANGELOG.md)
+
+- Tracks all changes to the project — content updates, new pages, theme changes, bug fixes
+- Format: date + version + description
+- Initial entry created on first build: "v1.0.0 — Initial site launch"
+- All slash commands (`/addpage`, `/update`, `/theme`) append entries automatically
+- Useful for client handoffs — shows exactly what changed and when
+
+### Static Site Page Templates by Business Type
+
+**Restaurant / Café:**
+index.html (Home), menu.html (Menu), order.html (Order/Reservations), about.html (About), contact.html (Contact)
+
+**Salon / Barbershop:**
+index.html (Home), services.html (Services & Pricing), book.html (Book Appointment), team.html (Our Team), contact.html (Contact)
+
+**Fitness / Gym:**
+index.html (Home), classes.html (Class Schedule), membership.html (Membership Plans), trainers.html (Trainers), contact.html (Contact)
+
+**Professional Services:**
+index.html (Home), services.html (Services), team.html (Our Team), portal.html (Client Info/Login), contact.html (Contact)
 
 ---
 
-## Quick Reference
-
-### Business Types Supported
-
-- Restaurant / Café
-- Salon / Barbershop
-- Fitness / Gym
-- Professional Services (law, consulting, etc.)
-
-### Design Styles Available
-
-| Style                | Vibe                                  |
-| -------------------- | ------------------------------------- |
-| Editorial            | Monocle, Cereal magazine              |
-| Modern Minimal       | Linear, Stripe                        |
-| Bold & Confident     | Ghost, Optimised Lean                 |
-| Warm & Approachable  | Neighborhood shop                     |
-| Classic Professional | Law firm, advisor                     |
-| Material             | Google product page                   |
-| Kinetic              | Variable fonts, scroll-reactive       |
-| Glass                | Apple Liquid Glass, translucent       |
-| Brutal               | Neo-brutalism, harsh borders          |
-
-See [docs/STATIC-SITE.md](docs/STATIC-SITE.md) for detailed trait definitions.
-
-### Available Slash Commands
-
-| Command               | Purpose                                                       |
-| --------------------- | ------------------------------------------------------------- |
-| `/letsgo`             | Generate a new site from scratch                              |
-| `/addpage`            | Add a new page to an existing project                         |
-| `/update`             | Update site-data.json from a new business brief               |
-| `/theme`              | Change colors and/or fonts                                    |
-| `/redesign`           | Coordinate design improvements (delegates to sub-skills)      |
-| `/redesign-layout`    | Fix repetitive layouts, add variety                           |
-| `/redesign-typography`| Improve typography, spacing, and hierarchy                    |
-| `/redesign-animations`| Add scroll animations, hover states, micro-interactions       |
-| `/redesign-slop`      | Remove AI slop (visual tells)                                 |
-| `/switch-style`       | Change to a different design style                            |
-| `/copy`               | Audit and fix copy quality (remove generic phrases)           |
-| `/accessibility`      | Comprehensive WCAG AA accessibility audit and fixes           |
-| `/content`            | Scrape an existing website and generate site-data.json        |
-| `/export`             | Zip the project for client handoff                            |
+**Note:** Full stack build specifications have been moved to `fullstack-todo.md` for future development.
 
 ---
 
-## Design Skills
+## Coding Conventions
 
-Let's Go! includes specialized design skills for iterating on existing sites. These skills can be used independently or together through the `/redesign` coordinator.
+### Naming
 
-### Core Design Skills
+- **Files:** kebab-case for all files (`contact-form.tsx`, `use-auth.ts`)
+- **Components:** PascalCase (`ContactForm`, `BookingCalendar`)
+- **Hooks:** camelCase with `use` prefix (`useAuth`, `useBooking`)
+- **Types/Interfaces:** PascalCase with descriptive names (`BookingSlot`, `MenuCategory`)
+- **Constants:** SCREAMING_SNAKE_CASE (`MAX_BOOKING_DAYS`, `DEFAULT_CURRENCY`)
+- **Database tables:** snake_case (`booking_slots`, `menu_items`)
+- **Database columns:** snake_case (`created_at`, `business_name`)
 
-**`/redesign`** — Smart coordinator that diagnoses issues and delegates to sub-skills
-- Automatically detects layout, typography, animation, slop, and copy issues
-- Can run individual improvements or comprehensive "everything" pass
-- Supports shortcuts: `/redesign layout`, `/redesign slop`, `/redesign everything`
+### Component Pattern
 
-**`/redesign-layout`** — Fix repetitive layouts and add variety
-- Identifies sections using the same layout pattern
-- Applies different Layout Recipes from DESIGN-RULES.md
-- Ensures homepage follows the Homepage Blueprint
-- Mixes container widths and section padding for visual rhythm
+Every component follows this structure:
 
-**`/redesign-typography`** — Improve typography and spacing
-- Tightens letter-spacing on headings (-0.03em h1, -0.02em h2)
-- Increases font sizes and improves hierarchy
-- Fixes line-height (1.7+ for body, 1.1 for headings)
-- Constrains text blocks to readable width (36rem max)
-- Increases section padding and grid gaps
+```tsx
+// 1. Imports
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import type { BookingSlot } from "@/types";
 
-**`/redesign-animations`** — Add polish with animations and interactions
-- Scroll-triggered fade-up animations using IntersectionObserver
-- Card hover effects (lift + shadow + border)
-- Hero staggered entrance animations
-- Header scroll effect (blur + shadow)
-- Form input focus states
-- Respects prefers-reduced-motion
+// 2. Types (if component-specific)
+interface BookingCardProps {
+  slot: BookingSlot;
+  onBook: (slotId: string) => void;
+}
 
-**`/redesign-slop`** — Remove AI tells and generic patterns
-- Removes decorative lines next to labels (the #1 AI tell)
-- Removes colored pills/badges above headings
-- Removes star emoji ratings
-- Fixes circular team photos (converts to square/3:4)
-- Removes icon grids and pill-shaped buttons
-- Fixes three-card grids with icon + title + paragraph
-- Ensures design doesn't look AI-generated
+// 3. Component
+export function BookingCard({ slot, onBook }: BookingCardProps) {
+  // hooks first
+  const [isLoading, setIsLoading] = useState(false);
 
-**`/switch-style`** — Change to a different design style
-- Applies complete style CSS from templates/static/styles/
-- Updates CSS variables, component styles, and theme colors
-- Handles style-specific HTML changes (e.g., dark mode for Bold & Confident)
-- Updates favicon.svg to match new colors
-- Six styles available: Editorial, Modern Minimal, Bold & Confident, Warm & Approachable, Classic Professional, Material
+  // handlers
+  const handleBook = async () => {
+    setIsLoading(true);
+    await onBook(slot.id);
+    setIsLoading(false);
+  };
 
-### Content & Quality Skills
-
-**`/copy`** — Audit and improve copy quality
-- Scans for banned phrases ("Welcome to...", "passionate about", "Learn More")
-- Flags generic CTAs and vague descriptions
-- Checks voice consistency across pages
-- Provides before/after suggestions for human-sounding copy
-- Business-type specific rewrite guidance
-
-**`/accessibility`** — WCAG AA compliance audit
-- Color contrast checking (4.5:1 for text, 3:1 for large text)
-- Missing alt text detection
-- Form label validation
-- Keyboard navigation checks
-- Touch target size validation (44px minimum)
-- ARIA label completeness
-- Semantic HTML structure
-- Provides detailed report with priority fixes
-
-### Usage Patterns
-
-**Single issue fix:**
-```
-/redesign-slop           # Just remove AI tells
-/copy                    # Just fix copy
-/accessibility           # Just fix a11y issues
+  // render
+  return <div className="rounded-lg border p-4">{/* ... */}</div>;
+}
 ```
 
-**Multiple improvements:**
-```
-/redesign 1,2,4          # Fix layouts, slop, and animations
-/redesign layout         # Shortcut for just layouts
-/redesign everything     # Run all sub-skills
+### Import Aliases
+
+- `@/` maps to `src/`
+- Always use aliases, never relative paths beyond one level (`../`)
+
+### State Management
+
+- **Local state:** `useState` / `useReducer`
+- **Server state:** TanStack Query (React Query) for all Supabase data fetching
+- **Global state:** React Context only when truly needed (auth, theme, site config)
+- **No Redux, no Zustand** — keep it simple
+
+### Error Handling
+
+- All async operations wrapped in try/catch
+- User-facing errors displayed via toast notifications
+- Console errors for development debugging
+- Supabase errors mapped to user-friendly messages
+
+### Accessibility
+
+- Semantic HTML elements (`nav`, `main`, `section`, `article`)
+- All images have `alt` text
+- All form inputs have associated labels
+- Keyboard navigation works on all interactive elements
+- Focus management on modals and dialogs
+- Color contrast meets WCAG AA minimum
+
+---
+
+## Module System Rules
+
+### Adding a Module
+
+Each module is self-contained in `src/modules/<name>/` and must include:
+
+1. `index.ts` — public API (exports components, hooks, types)
+2. `types.ts` — all TypeScript types for the module
+3. `components/` — React components
+4. `hooks/` — custom hooks for data fetching and logic
+
+### Module Independence
+
+- Modules never import from other modules directly
+- Shared dependencies go in `src/components/ui/` or `src/lib/`
+- Modules communicate through props and callbacks, never shared global state
+- Each module has its own Supabase migration file
+
+### Payment Provider Interface
+
+All payment operations go through the abstract interface in `src/modules/payments/types.ts`:
+
+```typescript
+interface PaymentProvider {
+  createCheckoutSession(params: CheckoutParams): Promise<CheckoutSession>;
+  createSubscription(params: SubscriptionParams): Promise<Subscription>;
+  handleWebhook(payload: WebhookPayload): Promise<WebhookResult>;
+  getPaymentStatus(paymentId: string): Promise<PaymentStatus>;
+}
 ```
 
-**Style change:**
+Stripe and Square each implement this interface. The active provider is set in `features.config.ts`.
+
+---
+
+## Database Conventions
+
+### Migration Files
+
+- Numbered sequentially: `00001_`, `00002_`, etc.
+- Each migration is idempotent where possible
+- Always include `created_at` and `updated_at` timestamps on every table
+- Always include RLS policies in the same migration that creates the table
+- Use UUIDs for all primary keys (`gen_random_uuid()`)
+
+### RLS Policy Pattern
+
+```sql
+-- Enable RLS
+ALTER TABLE table_name ENABLE ROW LEVEL SECURITY;
+
+-- Authenticated users can read their own data
+CREATE POLICY "Users can read own data"
+  ON table_name FOR SELECT
+  TO authenticated
+  USING (auth.uid() = user_id);
+
+-- Public read access for non-sensitive data
+CREATE POLICY "Public can read"
+  ON table_name FOR SELECT
+  TO anon
+  USING (is_public = true);
 ```
-/switch-style            # Interactive style picker
-/redesign bold           # Shortcut to switch to Bold & Confident
+
+---
+
+## CLI Behavior
+
+The CLI (`npx create-letsgo-app`) should:
+
+1. Ask for project name
+2. Ask for business type (restaurant, salon, fitness, professional)
+3. Ask for payment provider (Stripe, Square, none)
+4. Ask for Supabase project URL and anon key (or skip for later)
+5. Generate the project with only the relevant modules and pages
+6. Initialize git repo
+7. Install dependencies
+8. Print next steps (set up .env, run migrations, start dev server)
+
+---
+
+## UI/Design Rules
+
+### Default Theme
+
+- Clean, modern, professional — not flashy
+- White/light gray backgrounds, dark text
+- One primary accent color (configurable in `site.config.ts`)
+- System font stack as default, configurable
+- Consistent spacing scale via Tailwind defaults
+- Rounded corners on cards and buttons (`rounded-lg`)
+- Subtle shadows on elevated elements (`shadow-sm`)
+
+### NO AI SLOP — Mandatory Design Rules
+
+The design must look like a real developer built it. These are hard rules:
+
+**NEVER use:**
+
+- Gradient backgrounds on hero sections or CTAs
+- Purple-to-blue or rainbow gradients anywhere
+- Glassmorphism or frosted glass effects
+- Excessive border-radius (no pill-shaped everything)
+- Generic placeholder text like "Welcome to our amazing journey"
+- Emojis as section icons
+- Floating blobs, orbs, or decorative SVG noise
+- Dark mode with neon accents as default
+- Parallax scrolling effects
+- Lorem ipsum — always use realistic copy for the business type
+- Icon-heavy feature grids with generic icons
+- Cookie-cutter hero with centered text over a dark overlay (unless it genuinely fits)
+- Excessive drop shadows or glow effects
+- Animations on every element load
+- Tailwind's default indigo/violet as primary colors
+
+**ALWAYS do:**
+
+- Restrained color palette: one primary color, one neutral, plenty of white space
+- Real typographic hierarchy using size and weight, not color tricks
+- Lean on spacing and alignment for visual quality, not effects
+- Aim for Squarespace or Stripe-quality template feel
+- Flat, clean borders and subtle dividers
+- Minimal animations — hover states and page transitions only
+- Content is the focus, not decoration
+- Looks like something from awwwards or minimal.gallery, not a Canva template
+
+### Responsive Design
+
+- Mobile-first approach
+- Breakpoints: `sm` (640px), `md` (768px), `lg` (1024px)
+- Navigation collapses to hamburger menu on mobile
+- All layouts work on 320px minimum width
+
+### Page Structure
+
+Every page follows:
+
 ```
+Header (sticky)
+├── Logo + Business Name
+├── Navigation Links
+└── CTA Button (Book Now / Order / Contact)
+
+Main Content
+├── Hero Section (page-specific)
+├── Content Sections
+└── CTA Section
+
+Footer
+├── Business Info (address, phone, hours)
+├── Quick Links
+├── Social Media Links
+└── Copyright
+```
+
+---
+
+## Testing
+
+- No tests required for initial build
+- Structure code to be testable (pure functions, separated logic)
+- Tests will be added in a later phase
 
 ---
 
