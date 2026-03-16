@@ -421,7 +421,7 @@ Free to use for personal and commercial projects.
 ## Credits
 
 Built with [Claude Code](https://github.com/anthropics/claude-code).
-Built by [Wil Waldon] (https://wilwaldon.com).
+Built by [Wil Waldon](https://wilwaldon.com).
 
 ---
 
