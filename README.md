@@ -6,8 +6,6 @@ Generate production-ready local business websites in minutes. Pick a business ty
 - **Static Site** - No frameworks, no build tools. Just HTML, CSS, and vanilla JS.
 - **Full Stack** - Vite + React + TypeScript + Tailwind + Supabase for booking, payments, and user accounts.
 
-**Not 2024 generic.** Actually future.
-
 ---
 
 ## Prerequisites
