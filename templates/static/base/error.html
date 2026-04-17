@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page — {{business.name}}</title>
-  <meta name="description" content="">
-  <meta property="og:title" content="">
-  <meta property="og:description" content="">
-  <meta property="og:type" content="website">
+  <title>Error — {{business.name}}</title>
+  <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -34,31 +31,12 @@
   </aside>
 
   <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero__content">
-          <h1 class="hero__title">Page Title</h1>
-          <p class="hero__description">Page description goes here.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Main Content -->
-    <section class="section">
-      <div class="container">
-        <!-- Content populated per business type -->
-      </div>
-    </section>
-
-    <!-- CTA Banner -->
-    <section class="cta-banner">
-      <div class="container">
-        <h2>Ready to Get Started?</h2>
-        <p>We'd love to hear from you. Reach out today.</p>
-        <a href="contact.html" class="btn btn--primary btn--large">Get in Touch</a>
-      </div>
-    </section>
+    <div class="error-page">
+      <p class="error-page__code">Error</p>
+      <h1 class="error-page__title">Something went wrong</h1>
+      <p class="error-page__text">An unexpected error occurred. Please try again or go back to the homepage.</p>
+      <a href="index.html" class="btn btn--primary btn--large">Back to Home</a>
+    </div>
   </main>
 
   <!-- Footer -->
