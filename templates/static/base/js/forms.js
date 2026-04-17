@@ -1,5 +1,13 @@
 /**
- * forms.js — Contact form validation and mailto: fallback submission
+ * forms.js — Contact form validation and submission
+ *
+ * Submission strategy (in priority order):
+ *   1. If the form has data-formspree-endpoint set, POST via fetch (works on S3/static hosts)
+ *   2. Otherwise, fall back to a mailto: link (opens local mail client)
+ *
+ * To enable Formspree, create a free form at https://formspree.io and add
+ * the endpoint to your contact form:
+ *   <form data-contact-form data-formspree-endpoint="https://formspree.io/f/YOUR_ID">
  */
 
 function initForms() {
@@ -13,7 +21,7 @@ function initForms() {
   });
 }
 
-function handleSubmit(form) {
+async function handleSubmit(form) {
   // Check honeypot
   var honeypot = form.querySelector('[data-honeypot]');
   if (honeypot && honeypot.value) return;
@@ -35,37 +43,54 @@ function handleSubmit(form) {
         if (msg) msg.textContent = error.message;
       }
     });
-    // Focus first error
     errors[0].element.focus();
     return;
   }
 
-  // Gather form data
-  var name = form.querySelector('[name="name"]');
-  var email = form.querySelector('[name="email"]');
-  var phone = form.querySelector('[name="phone"]');
-  var message = form.querySelector('[name="message"]');
+  var endpoint = form.getAttribute('data-formspree-endpoint');
 
-  // Build mailto link
-  var businessEmail = '';
-  if (window.siteData && window.siteData.business) {
-    businessEmail = window.siteData.business.email || '';
+  if (endpoint) {
+    var submitBtn = form.querySelector('[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      var res = await fetch(endpoint, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!res.ok) throw new Error('Submission failed');
+    } catch (err) {
+      console.error('Form submission error:', err);
+      if (submitBtn) submitBtn.disabled = false;
+      return;
+    }
+  } else {
+    // Fallback: mailto
+    var name = form.querySelector('[name="name"]');
+    var email = form.querySelector('[name="email"]');
+    var phone = form.querySelector('[name="phone"]');
+    var message = form.querySelector('[name="message"]');
+
+    var businessEmail = '';
+    if (window.siteData && window.siteData.business) {
+      businessEmail = window.siteData.business.email || '';
+    }
+
+    var subject = 'Contact from ' + (name ? name.value : 'Website');
+    var body = '';
+    if (name) body += 'Name: ' + name.value + '\n';
+    if (email) body += 'Email: ' + email.value + '\n';
+    if (phone && phone.value) body += 'Phone: ' + phone.value + '\n';
+    if (message) body += '\nMessage:\n' + message.value;
+
+    var mailtoLink = 'mailto:' + encodeURIComponent(businessEmail) +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailtoLink;
   }
 
-  var subject = 'Contact from ' + (name ? name.value : 'Website');
-  var body = '';
-  if (name) body += 'Name: ' + name.value + '\n';
-  if (email) body += 'Email: ' + email.value + '\n';
-  if (phone && phone.value) body += 'Phone: ' + phone.value + '\n';
-  if (message) body += '\nMessage:\n' + message.value;
-
-  var mailtoLink = 'mailto:' + encodeURIComponent(businessEmail) +
-    '?subject=' + encodeURIComponent(subject) +
-    '&body=' + encodeURIComponent(body);
-
-  window.location.href = mailtoLink;
-
-  // Show success state
   var successEl = form.parentElement.querySelector('.form-success');
   if (successEl) {
     form.style.display = 'none';
@@ -102,7 +127,7 @@ function validate(form) {
 }
 
 function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
 }
 
 export { initForms };
